@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import '../css/login.css';
 import '../css/util.css';
+import fb_button from '../assets/images/buttons/facebook.png'
+import google_btn from '../assets/images/buttons/google.png'
+import linkedin_btn from '../assets/images/buttons/linkedin.png'
 
 export default class Login extends Component {
 
@@ -53,6 +56,11 @@ export default class Login extends Component {
                                         </a>
                                     </div>
                                 </div>
+                                <div className= "redirect-login-register">
+                                    <span className="txt2">
+                                        Don't You have an account? <a href="/register">Register </a>now
+                                    </span>
+                                </div>
 
 
                                 <div className="container-login100-form-btn">
@@ -61,21 +69,23 @@ export default class Login extends Component {
                                     </button>
                                 </div>
 
-                                <div className="text-center p-t-46 p-b-20">
+                                <div className="text-center p-t-46 p-b-20 temp-upper-padding">
 						<span className="txt2">
 							or sign up using
 						</span>
                                 </div>
-
-                                <div className="login100-form-social flex-c-m">
-                                    <a href="#" className="login100-form-social-item flex-c-m bg1 m-r-5">
-                                        <i className="fa fa-facebook-f" aria-hidden="true"></i>
-                                    </a>
-
-                                    <a href="#" className="login100-form-social-item flex-c-m bg2 m-r-5">
-                                        <i className="fa fa-twitter" aria-hidden="true"></i>
-                                    </a>
+                                <div className="social-btn-container">
+                                    <div>
+                                        <img src={fb_button} className="social-btn-common" alt="Sign with Facebook" />
+                                    </div>
+                                    <div>
+                                        <img src={google_btn} className="social-btn-common" alt="Sign with Google" />
+                                    </div>
+                                    <div>
+                                        <img src={linkedin_btn} className="social-btn-common" alt="Sign with Linkedin"/>
+                                    </div>
                                 </div>
+
                             </form>
 
                             <div className="login100-more" style={{
