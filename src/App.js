@@ -56,7 +56,10 @@ function App() {
 
 
                         </ul>
-                        <button className="btn btn-outline-success" type="submit">Login</button>
+                        <a href="/login">
+                            <button className="btn btn-outline-success" type="submit">Login</button>
+                        </a>
+
                         <div style={{width: "10px"}}></div>
                         <button className="btn btn-outline-success" type="submit">Register</button>
                     </div>
