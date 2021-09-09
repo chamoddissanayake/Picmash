@@ -11,6 +11,9 @@ import Register from "./components/register";
 import Sell from "./components/sell";
 import Footer from "./components/footer";
 import Results from "./components/results";
+import logo_image from '../src/assets/images/logo-new.png'
+import Browse from "./components/browse";
+
 
 function App() {
     return (
@@ -32,7 +35,10 @@ function App() {
 
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="#">Navbar</a>
+                    <a href="/">
+                        <img src={logo_image} alt="Logo" height={50}/>;
+                    </a>
+
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -41,22 +47,18 @@ function App() {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="#">Home</a>
+                                <a className="nav-link" href="/browse">Browse Items</a>
                             </li>
+                            <li></li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Link</a>
+                                <a className="nav-link" href="/sell">Sell My Items</a>
                             </li>
 
-                            <li className="nav-item">
-                                <a className="nav-link disabled" href="#" tabIndex="-1"
-                                   aria-disabled="true">Disabled</a>
-                            </li>
+
                         </ul>
-                        <form className="d-flex">
-                            <input className="form-control me-2" type="search" placeholder="Search"
-                                   aria-label="Search"/>
-                            <button className="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+                        <button className="btn btn-outline-success" type="submit">Login</button>
+                        <div style={{width: "10px"}}></div>
+                        <button className="btn btn-outline-success" type="submit">Register</button>
                     </div>
                 </div>
             </nav>
@@ -78,6 +80,10 @@ function App() {
                 <Route path="/results">
                     <Results/>
                 </Route>
+                <Route path="/browse">
+                    <Browse/>
+                </Route>
+
             </Switch>
 
             <Footer/>
