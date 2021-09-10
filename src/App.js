@@ -13,25 +13,12 @@ import Footer from "./components/footer";
 import Results from "./components/results";
 import logo_image from '../src/assets/images/logo-new.png'
 import Browse from "./components/browse";
+import Contact from "./components/contact";
 
 
 function App() {
     return (
         <Router>
-            {/*<ul>*/}
-            {/*    <li>*/}
-            {/*        <Link to="/">Home</Link>*/}
-            {/*    </li>*/}
-            {/*    <li>*/}
-            {/*        <Link to="/login">Login</Link>*/}
-            {/*    </li>*/}
-            {/*    <li>*/}
-            {/*        <Link to="/register">Register</Link>*/}
-            {/*    </li>*/}
-            {/*    <li>*/}
-            {/*        <Link to="/sell">Sell</Link>*/}
-            {/*    </li>*/}
-            {/*</ul>*/}
 
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
@@ -52,6 +39,10 @@ function App() {
                             <li></li>
                             <li className="nav-item">
                                 <a className="nav-link" href="/sell">Sell My Items</a>
+                            </li>
+                            <li></li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/contact">Contact Us</a>
                             </li>
 
 
@@ -88,6 +79,9 @@ function App() {
                 </Route>
                 <Route path="/browse">
                     <Browse/>
+                </Route>
+                <Route path="/contact">
+                    <Contact/>
                 </Route>
 
             </Switch>
