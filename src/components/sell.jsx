@@ -3,13 +3,34 @@ import '../css/sell.css';
 import '../css/util.css';
 import sell_bg from '../assets/images/sell-bg.jpg'
 
+
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 export default class Sell extends Component {
 
-    constructor() {
-        super();
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            file_select_type: 'local'
+        };
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
+    }
+
+    handleChange(event) {
+        if (event.target.value == 'local') {
+            this.setState({ file_select_type: 'local' });
+        } else if (event.target.value == 'drive') {
+            this.setState({ file_select_type: 'drive' });
+        } else if (event.target.value == 'facebook') {
+            this.setState({ file_select_type: 'facebook' });
+        }
 
     }
 
@@ -34,64 +55,107 @@ export default class Sell extends Component {
 				</span>
                     </div>
                     <div className="form-container">
-                        {/*<p>sdfsdfsdfsdf</p>*/}
-                        {/*<form>*/}
-                        {/*    <div className="mb-3">*/}
-                        {/*        <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>*/}
-                        {/*        <input type="email" className="form-control" id="exampleInputEmail1"*/}
-                        {/*               aria-describedby="emailHelp"/>*/}
-                        {/*            <div id="emailHelp" className="form-text">We'll never share your email with anyone*/}
-                        {/*                else.*/}
-                        {/*            </div>*/}
-                        {/*    </div>*/}
-                        {/*    <div className="mb-3">*/}
-                        {/*        <label htmlFor="exampleInputPassword1" className="form-label">Password</label>*/}
-                        {/*        <input type="password" className="form-control" id="exampleInputPassword1"/>*/}
-                        {/*    </div>*/}
-                        {/*    <div className="mb-3 form-check">*/}
-                        {/*        <input type="checkbox" className="form-check-input" id="exampleCheck1"/>*/}
-                        {/*            <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>*/}
-                        {/*    </div>*/}
-                        {/*    <button type="submit" className="btn btn-primary">Submit</button>*/}
-                        {/*</form>*/}
-                        <form action="/action_page.php">
+                        <form>
                             <div className="row">
                                 <div className="col-25">
-                                    <label htmlFor="fname">First Name</label>
+                                    <label>Title</label>
                                 </div>
                                 <div className="col-75">
-                                    <input type="text" id="fname" name="firstname" placeholder="Your name.."/>
+                                    <input type="text" id="fName" name="firstName"
+                                           placeholder="Title of the photo or video"/>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-25">
-                                    <label htmlFor="lname">Last Name</label>
+                                    <label>Type</label>
                                 </div>
                                 <div className="col-75">
-                                    <input type="text" id="lname" name="lastname" placeholder="Your last name.."/>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-25">
-                                    <label htmlFor="country">Country</label>
-                                </div>
-                                <div className="col-75">
-                                    <select id="country" name="country">
-                                        <option value="australia">Australia</option>
-                                        <option value="canada">Canada</option>
-                                        <option value="usa">USA</option>
+                                    <select id="type" name="type">
+                                        <option value="photo">Photo</option>
+                                        <option value="video">Video</option>
                                     </select>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-25">
-                                    <label htmlFor="subject">Subject</label>
+                                    <label>Price (USD)</label>
                                 </div>
                                 <div className="col-75">
-                                        <textarea id="subject" name="subject" placeholder="Write something.."
-                                                  style={{height: "200px"}}></textarea>
+                                    <input type="text" id="price" name="price" placeholder="Price of the item ($)"/>
                                 </div>
                             </div>
+
+                            <div className="row">
+                                <div className="col-25">
+                                    <label>Description</label>
+                                </div>
+                                <div className="col-75">
+                                        <textarea id="description" name="description"
+                                                  placeholder="Say something about your photo or video"
+                                                  style={{height: "100px"}}></textarea>
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-25">
+                                    <label>Choose Image</label>
+                                </div>
+                                {/*    <div className="col-75">*/}
+                                {/*        <div className="form-check form-check-inline">*/}
+                                {/*            <input className="form-check-input" type="radio" name="radio_local"*/}
+                                {/*                   id="radio_local" value="radio_local" checked/>*/}
+                                {/*            <label className="form-check-label" htmlFor="inlineRadio1">Local File</label>*/}
+                                {/*        </div>*/}
+                                {/*        <div className="form-check form-check-inline">*/}
+                                {/*            <input className="form-check-input" type="radio" name="google_drive"*/}
+                                {/*                   id="google_drive" value="google_drive"/>*/}
+                                {/*            <label className="form-check-label" htmlFor="inlineRadio2">Google Drive</label>*/}
+                                {/*        </div>*/}
+                                {/*        <div className="form-check form-check-inline">*/}
+                                {/*            <input className="form-check-input" type="radio" name="facebook"*/}
+                                {/*                   id="facebook" value="facebook"/>*/}
+                                {/*            <label className="form-check-label" htmlFor="inlineRadio2">Facebook</label>*/}
+                                {/*        </div>*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
+
+                                {/*value={value} onChange={handleChange}*/}
+                                <div className="col-75">
+                                    <RadioGroup aria-label="resource-select-type" name="resource-select-type"
+                                                onChange={this.handleChange} value={this.state.file_select_type}>
+                                        <div className="form-check form-check-inline">
+                                            <FormControlLabel value="local" control={<Radio/>} label="Local File"/>
+                                        </div>
+                                        <div className="form-check form-check-inline">
+                                            <FormControlLabel value="drive" control={<Radio/>} label="Google"/>
+                                        </div>
+                                        <div className="form-check form-check-inline">
+                                            <FormControlLabel value="facebook" control={<Radio/>} label="Facebook"/>
+                                        </div>
+                                    </RadioGroup>
+
+                                    {this.state.file_select_type == "local" && <span>
+                                        <div>
+                                            <p>Local file selector</p>
+                                        </div>
+                                    </span>}
+
+                                    {this.state.file_select_type == "drive" && <span>
+                                        <div>
+                                            <p>Drive file selector</p>
+                                        </div>
+                                    </span>}
+
+                                    {this.state.file_select_type == "facebook" && <span>
+                                        <div>
+                                            <p>Facebook file selector</p>
+                                        </div>
+                                    </span>}
+
+                                </div>
+                            </div>
+
+
                             <div className="row">
                                 <input type="submit" value="Submit"/>
                             </div>
