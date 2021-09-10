@@ -15,6 +15,7 @@ import logo_image from '../src/assets/images/logo-new.png'
 import Browse from "./components/browse";
 import Contact from "./components/contact";
 import AboutUs from "./components/about";
+import './css/general.css';
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
                     <a href="/">
-                        <img src={logo_image} alt="Logo" height={50}/>;
+                        <img src={logo_image} alt="Logo" className="top-logo"/>
                     </a>
 
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"

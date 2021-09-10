@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../css/footer.css';
 import logo_image from '../assets/images/logo-new.png'
+import '../css/general.css';
 
 export default class Footer extends Component {
 
@@ -26,14 +27,14 @@ export default class Footer extends Component {
                             </div>
                             <div
                                 className="col-md-8 py-4 py-md-5 d-flex align-items-center pl-md-5 aside-stretch-right">
-                                <form action="#" className="subscribe-form w-100">
+                                <div className="subscribe-form w-100">
                                     <div className="form-group d-flex">
                                         <input type="text" className="form-control rounded-left"
                                                placeholder="Enter email address"/>
-                                        <button type="submit" className="form-control submit"><span>Submit</span>
+                                        <button  className="form-control submit"><span>Submit</span>
                                         </button>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                         <div className="row pt-4">
@@ -41,7 +42,7 @@ export default class Footer extends Component {
                                 <div className="row justify-content-end">
                                     <div className="col-md-12 col-lg-9 text-md-right mb-md-0 mb-4">
                                         {/*<h2 className="footer-heading"><a href="#" className="logo">Colorlib</a></h2>*/}
-                                        <img src={logo_image} alt="Logo" height={70}/>
+                                        <img src={logo_image} alt="Logo" height={50}/>
                                         <p className="copyright">
                                             Copyright &copy; All rights reserved | Picmas - 2021
                                         </p>
@@ -72,18 +73,6 @@ export default class Footer extends Component {
                                         </ul>
                                     </div>
                                     <div className="col-md-8 mb-md-0 mb-4">
-                                        {/*<h2 className="footer-heading">Application</h2>*/}
-                                        {/*<ul className="list-unstyled">*/}
-                                        {/*    <li><a href="#" className="py-1 d-block"><span*/}
-                                        {/*        className="ion-ios-checkmark-circle-outline mr-2"></span>Download</a>*/}
-                                        {/*    </li>*/}
-                                        {/*    <li><a href="#" className="py-1 d-block"><span*/}
-                                        {/*        className="ion-ios-checkmark-circle-outline mr-2"></span>Bike*/}
-                                        {/*        Provider</a></li>*/}
-                                        {/*    <li><a href="#" className="py-1 d-block"><span*/}
-                                        {/*        className="ion-ios-checkmark-circle-outline mr-2"></span>How to Used</a>*/}
-                                        {/*    </li>*/}
-                                        {/*</ul>*/}
                                         <div className="footer-justify">
                                             <p>Picmash provides high quality and completely free stock photos licensed under
                                                 the Picmash license. All photos are nicely tagged, searchable and also easy
@@ -91,20 +80,6 @@ export default class Footer extends Component {
                                                 stock photos and every day new high resolution photos will be added.</p>
                                         </div>
                                     </div>
-                                    {/*<div className="col-md-4 mb-md-0 mb-4">*/}
-                                    {/*    /!*<h2 className="footer-heading">API</h2>*!/*/}
-                                    {/*    <ul className="list-unstyled">*/}
-                                    {/*        <li><a href="#" className="py-1 d-block"><span*/}
-                                    {/*            className="ion-ios-checkmark-circle-outline mr-2"></span>Documentation</a>*/}
-                                    {/*        </li>*/}
-                                    {/*        <li><a href="#" className="py-1 d-block"><span*/}
-                                    {/*            className="ion-ios-checkmark-circle-outline mr-2"></span>Credential</a>*/}
-                                    {/*        </li>*/}
-                                    {/*        <li><a href="#" className="py-1 d-block"><span*/}
-                                    {/*            className="ion-ios-checkmark-circle-outline mr-2"></span>Developer info</a>*/}
-                                    {/*        </li>*/}
-                                    {/*    </ul>*/}
-                                    {/*</div>*/}
                                 </div>
                             </div>
                         </div>
