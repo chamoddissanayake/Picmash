@@ -42,7 +42,7 @@ export default class Footer extends Component {
                                 <div className="row justify-content-end">
                                     <div className="col-md-12 col-lg-9 text-md-right mb-md-0 mb-4">
                                         {/*<h2 className="footer-heading"><a href="#" className="logo">Colorlib</a></h2>*/}
-                                        <img src={logo_image} alt="Logo" height={50}/>
+                                        <img src={logo_image} alt="Logo" className="bottom-logo"/>
                                         <p className="copyright">
                                             Copyright &copy; All rights reserved | Picmas - 2021
                                         </p>
@@ -54,20 +54,20 @@ export default class Footer extends Component {
                                     <div className="col-md-4 mb-md-0 mb-4">
                                         <h2 className="footer-heading">Links</h2>
                                         <ul className="list-unstyled">
-                                            <li><a href="#" className="py-1 d-block"><span
+                                            <li><a href="/" className="py-1 d-block"><span
                                                 className="ion-ios-checkmark-circle-outline mr-2"></span>Home</a>
                                             </li>
-                                            <li><a href="#" className="py-1 d-block"><span
+                                            <li><a href="/browse" className="py-1 d-block"><span
                                                 className="ion-ios-checkmark-circle-outline mr-2"></span>Browse
                                                 Items</a></li>
-                                            <li><a href="#" className="py-1 d-block"><span
+                                            <li><a href="/sell" className="py-1 d-block"><span
                                                 className="ion-ios-checkmark-circle-outline mr-2"></span>Sell My
                                                 Items</a>
                                             </li>
-                                            <li><a href="#" className="py-1 d-block"><span
+                                            <li><a href="/contact" className="py-1 d-block"><span
                                                 className="ion-ios-checkmark-circle-outline mr-2"></span>Contact Us</a>
                                             </li>
-                                            <li><a href="#" className="py-1 d-block"><span
+                                            <li><a href="/about" className="py-1 d-block"><span
                                                 className="ion-ios-checkmark-circle-outline mr-2"></span>About Us</a>
                                             </li>
                                         </ul>
