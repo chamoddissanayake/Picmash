@@ -8339,3 +8339,10 @@ footer {
     background: #372f42; }
 .footer-06 .aside-stretch-right:after {
     background: #372f42; }
+
+
+
+.footer-justify{
+    text-align: justify;
+    text-justify: inter-word;
+}

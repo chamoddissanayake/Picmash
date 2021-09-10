@@ -20,7 +20,7 @@ export default class Contact extends Component {
                     <div className="container">
                         <div className="row justify-content-center">
                             <div className="col-md-6 text-center mb-5">
-                                <h2 className="heading-section">Contact Form #10</h2>
+                                <h2 className="heading-section">Contact Us 24/7</h2>
                             </div>
                         </div>
                         <div className="row justify-content-center">
@@ -36,8 +36,7 @@ export default class Contact extends Component {
                                                         <span className="fa fa-map-marker"></span>
                                                     </div>
                                                     <div className="text pl-4">
-                                                        <p><span>Address:</span> 198 West 21th Street, Suite 721 New
-                                                            York NY 10016</p>
+                                                        <p><span>Address:</span> No.1 Galle Road, Colombo</p>
                                                     </div>
                                                 </div>
                                                 <div className="dbox w-100 d-flex align-items-start">
@@ -46,8 +45,7 @@ export default class Contact extends Component {
                                                         <span className="fa fa-phone"></span>
                                                     </div>
                                                     <div className="text pl-4">
-                                                        <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355
-                                                            98</a></p>
+                                                        <p><span>Phone:</span> 0111234567</p>
                                                     </div>
                                                 </div>
                                                 <div className="dbox w-100 d-flex align-items-start">
@@ -56,8 +54,7 @@ export default class Contact extends Component {
                                                         <span className="fa fa-paper-plane"></span>
                                                     </div>
                                                     <div className="text pl-4">
-                                                        <p><span>Email:</span> <a
-                                                            href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+                                                        <p><span>Email:</span> info@picmas.com</p>
                                                     </div>
                                                 </div>
                                                 <div className="dbox w-100 d-flex align-items-start">
@@ -66,7 +63,7 @@ export default class Contact extends Component {
                                                         <span className="fa fa-globe"></span>
                                                     </div>
                                                     <div className="text pl-4">
-                                                        <p><span>Website</span> <a href="#">yoursite.com</a></p>
+                                                        <p><span>Website</span> <a href="/">picmas.com</a></p>
                                                     </div>
                                                 </div>
                                             </div>
