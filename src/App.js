@@ -14,6 +14,7 @@ import Results from "./components/results";
 import logo_image from '../src/assets/images/logo-new.png'
 import Browse from "./components/browse";
 import Contact from "./components/contact";
+import AboutUs from "./components/about";
 
 
 function App() {
@@ -43,6 +44,10 @@ function App() {
                             <li></li>
                             <li className="nav-item">
                                 <a className="nav-link" href="/contact">Contact Us</a>
+                            </li>
+                            <li></li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/about">About Us</a>
                             </li>
 
 
@@ -82,6 +87,9 @@ function App() {
                 </Route>
                 <Route path="/contact">
                     <Contact/>
+                </Route>
+                <Route path="/about">
+                    <AboutUs/>
                 </Route>
 
             </Switch>
