@@ -25,11 +25,11 @@ export default class Sell extends Component {
 
     handleChange(event) {
         if (event.target.value == 'local') {
-            this.setState({ file_select_type: 'local' });
+            this.setState({file_select_type: 'local'});
         } else if (event.target.value == 'drive') {
-            this.setState({ file_select_type: 'drive' });
+            this.setState({file_select_type: 'drive'});
         } else if (event.target.value == 'facebook') {
-            this.setState({ file_select_type: 'facebook' });
+            this.setState({file_select_type: 'facebook'});
         }
 
     }
@@ -100,59 +100,55 @@ export default class Sell extends Component {
                                 <div className="col-25">
                                     <label>Choose Image</label>
                                 </div>
-                                {/*    <div className="col-75">*/}
-                                {/*        <div className="form-check form-check-inline">*/}
-                                {/*            <input className="form-check-input" type="radio" name="radio_local"*/}
-                                {/*                   id="radio_local" value="radio_local" checked/>*/}
-                                {/*            <label className="form-check-label" htmlFor="inlineRadio1">Local File</label>*/}
-                                {/*        </div>*/}
-                                {/*        <div className="form-check form-check-inline">*/}
-                                {/*            <input className="form-check-input" type="radio" name="google_drive"*/}
-                                {/*                   id="google_drive" value="google_drive"/>*/}
-                                {/*            <label className="form-check-label" htmlFor="inlineRadio2">Google Drive</label>*/}
-                                {/*        </div>*/}
-                                {/*        <div className="form-check form-check-inline">*/}
-                                {/*            <input className="form-check-input" type="radio" name="facebook"*/}
-                                {/*                   id="facebook" value="facebook"/>*/}
-                                {/*            <label className="form-check-label" htmlFor="inlineRadio2">Facebook</label>*/}
-                                {/*        </div>*/}
-                                {/*    </div>*/}
-                                {/*</div>*/}
 
-                                {/*value={value} onChange={handleChange}*/}
+
                                 <div className="col-75">
                                     <RadioGroup aria-label="resource-select-type" name="resource-select-type"
                                                 onChange={this.handleChange} value={this.state.file_select_type}>
-                                        <div className="form-check form-check-inline">
-                                            <FormControlLabel value="local" control={<Radio/>} label="Local File"/>
-                                        </div>
-                                        <div className="form-check form-check-inline">
-                                            <FormControlLabel value="drive" control={<Radio/>} label="Google"/>
-                                        </div>
-                                        <div className="form-check form-check-inline">
-                                            <FormControlLabel value="facebook" control={<Radio/>} label="Facebook"/>
-                                        </div>
+                                            <span>
+                                                <div className="form-check form-check-inline">
+                                                    <FormControlLabel value="local" control={<Radio/>}
+                                                                      label="Local File"/>
+                                                </div>
+                                                <div className="form-check form-check-inline">
+                                                    <FormControlLabel value="drive" control={<Radio/>} label="Google"/>
+                                                </div>
+                                                <div className="form-check form-check-inline">
+                                                    <FormControlLabel value="facebook" control={<Radio/>}
+                                                                      label="Facebook"/>
+                                                </div>
+                                            </span>
                                     </RadioGroup>
+                                    {/*value={value} onChange={handleChange}*/}
+                                    <div className="col-75">
 
-                                    {this.state.file_select_type == "local" && <span>
-                                        <div>
-                                            <p>Local file selector</p>
+                                        {this.state.file_select_type == "local" && <span>
+                                        <div className="selected-choose-type-container">
+                                            {/*Local Image Picker start*/}
+                                            {/*<p>Local file selector</p>*/}
+                                            <input type="file"
+                                                   id="avatar" name="avatar"
+                                                   accept="image/png, image/jpeg"/>
+                                            {/*Local Image picker end*/}
                                         </div>
                                     </span>}
 
-                                    {this.state.file_select_type == "drive" && <span>
-                                        <div>
+                                        {this.state.file_select_type == "drive" && <span>
+                                        <div className="selected-choose-type-container">
                                             <p>Drive file selector</p>
                                         </div>
                                     </span>}
 
-                                    {this.state.file_select_type == "facebook" && <span>
-                                        <div>
+                                        {this.state.file_select_type == "facebook" && <span>
+                                        <div className="selected-choose-type-container">
                                             <p>Facebook file selector</p>
                                         </div>
                                     </span>}
 
+                                    </div>
                                 </div>
+
+
                             </div>
 
 
@@ -163,41 +159,6 @@ export default class Sell extends Component {
                     </div>
 
 
-                    {/*<form className="contact100-form validate-form">*/}
-                    {/*    <div className="wrap-input100 validate-input" data-validate="Name is required">*/}
-                    {/*        <span className="label-input100">Full Name:</span>*/}
-                    {/*        <input className="input100" type="text" name="name" placeholder="Enter full name"/>*/}
-                    {/*        <span className="focus-input100"></span>*/}
-                    {/*    </div>*/}
-
-                    {/*    <div className="wrap-input100 validate-input"*/}
-                    {/*         data-validate="Valid email is required: ex@abc.xyz">*/}
-                    {/*        <span className="label-input100">Email:</span>*/}
-                    {/*        <input className="input100" type="text" name="email" placeholder="Enter email addess"/>*/}
-                    {/*        <span className="focus-input100"></span>*/}
-                    {/*    </div>*/}
-
-                    {/*    <div className="wrap-input100 validate-input" data-validate="Phone is required">*/}
-                    {/*        <span className="label-input100">Phone:</span>*/}
-                    {/*        <input className="input100" type="text" name="phone" placeholder="Enter phone number"/>*/}
-                    {/*        <span className="focus-input100"></span>*/}
-                    {/*    </div>*/}
-
-                    {/*    <div className="wrap-input100 validate-input" data-validate="Message is required">*/}
-                    {/*        <span className="label-input100">Message:</span>*/}
-                    {/*        <textarea className="input100" name="message" placeholder="Your Comment..."></textarea>*/}
-                    {/*        <span className="focus-input100"></span>*/}
-                    {/*    </div>*/}
-
-                    {/*    <div className="container-contact100-form-btn">*/}
-                    {/*        <button className="contact100-form-btn">*/}
-                    {/*	<span>*/}
-                    {/*		Submit*/}
-                    {/*		<i className="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>*/}
-                    {/*	</span>*/}
-                    {/*        </button>*/}
-                    {/*    </div>*/}
-                    {/*</form>*/}
                 </div>
             </div>
         )

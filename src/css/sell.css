@@ -433,3 +433,9 @@ input[type=submit]:hover {
     margin-top: 0;
   }
 }
+
+
+.selected-choose-type-container{
+  padding-top: -10px;
+  padding-bottom: 20px;
+}
