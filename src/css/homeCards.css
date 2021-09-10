@@ -40,7 +40,7 @@
     text-align: center;
 }
 #cards_landscape_wrap-2 .card-flyer .text-box .text-container{
-    padding: 30px 18px;
+    padding: 30px 18px 2px 18px;
 }
 #cards_landscape_wrap-2 .card-flyer{
     background: #FFFFFF;
@@ -85,4 +85,18 @@
 .card-grid-title{
     font-size: 30px;
     font-weight: bold;
+}
+
+.card-bottom-div{
+    padding-bottom: 10px;
+}
+
+.price-font{
+    /*font-size: 30px;*/
+    font-weight: bold;
+}
+
+.justify-card{
+    text-align: justify;
+    text-justify: inter-word;
 }
