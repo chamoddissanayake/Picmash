@@ -16,7 +16,7 @@ export default class Contact extends Component {
             <div>
 
                 <section className="ftco-section img bg-hero"
-                         style={{"background-image": "url(https://images.pexels.com/photos/773471/pexels-photo-773471.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500)"}} >
+                         style={{"backgroundImage": "url(https://images.pexels.com/photos/773471/pexels-photo-773471.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500)"}} >
                     <div className="container">
                         <div className="row justify-content-center">
                             <div className="col-md-6 text-center mb-5">

@@ -52,7 +52,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: 1rem;
+    fontSize: 1rem;
     font-weight: 400;
     line-height: 1.5;
     color: #212529;
@@ -117,12 +117,12 @@ strong {
     font-weight: bolder; }
 
 small {
-    font-size: 80%; }
+    fontSize: 80%; }
 
 sub,
 sup {
     position: relative;
-    font-size: 75%;
+    fontSize: 75%;
     line-height: 0;
     vertical-align: baseline; }
 
@@ -154,7 +154,7 @@ code,
 kbd,
 samp {
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    font-size: 1em; }
+    fontSize: 1em; }
 
 pre {
     margin-top: 0;
@@ -203,7 +203,7 @@ optgroup,
 textarea {
     margin: 0;
     font-family: inherit;
-    font-size: inherit;
+    fontSize: inherit;
     line-height: inherit; }
 
 button,
@@ -264,7 +264,7 @@ legend {
     max-width: 100%;
     padding: 0;
     margin-bottom: .5rem;
-    font-size: 1.5rem;
+    fontSize: 1.5rem;
     line-height: inherit;
     color: inherit;
     white-space: normal; }
@@ -307,44 +307,44 @@ h1, h2, h3, h4, h5, h6,
     line-height: 1.2; }
 
 h1, .h1 {
-    font-size: 2.5rem; }
+    fontSize: 2.5rem; }
 
 h2, .h2 {
-    font-size: 2rem; }
+    fontSize: 2rem; }
 
 h3, .h3 {
-    font-size: 1.75rem; }
+    fontSize: 1.75rem; }
 
 h4, .h4 {
-    font-size: 1.5rem; }
+    fontSize: 1.5rem; }
 
 h5, .h5 {
-    font-size: 1.25rem; }
+    fontSize: 1.25rem; }
 
 h6, .h6 {
-    font-size: 1rem; }
+    fontSize: 1rem; }
 
 .lead {
-    font-size: 1.25rem;
+    fontSize: 1.25rem;
     font-weight: 300; }
 
 .display-1 {
-    font-size: 6rem;
+    fontSize: 6rem;
     font-weight: 300;
     line-height: 1.2; }
 
 .display-2 {
-    font-size: 5.5rem;
+    fontSize: 5.5rem;
     font-weight: 300;
     line-height: 1.2; }
 
 .display-3 {
-    font-size: 4.5rem;
+    fontSize: 4.5rem;
     font-weight: 300;
     line-height: 1.2; }
 
 .display-4 {
-    font-size: 3.5rem;
+    fontSize: 3.5rem;
     font-weight: 300;
     line-height: 1.2; }
 
@@ -356,7 +356,7 @@ hr {
 
 small,
 .small {
-    font-size: 80%;
+    fontSize: 80%;
     font-weight: 400; }
 
 mark,
@@ -378,16 +378,16 @@ mark,
     margin-right: 0.5rem; }
 
 .initialism {
-    font-size: 90%;
+    fontSize: 90%;
     text-transform: uppercase; }
 
 .blockquote {
     margin-bottom: 1rem;
-    font-size: 1.25rem; }
+    fontSize: 1.25rem; }
 
 .blockquote-footer {
     display: block;
-    font-size: 80%;
+    fontSize: 80%;
     color: #6c757d; }
 .blockquote-footer::before {
     content: "\2014\00A0"; }
@@ -412,11 +412,11 @@ mark,
     line-height: 1; }
 
 .figure-caption {
-    font-size: 90%;
+    fontSize: 90%;
     color: #6c757d; }
 
 code {
-    font-size: 87.5%;
+    fontSize: 87.5%;
     color: #e83e8c;
     word-break: break-word; }
 a > code {
@@ -424,21 +424,21 @@ a > code {
 
 kbd {
     padding: 0.2rem 0.4rem;
-    font-size: 87.5%;
+    fontSize: 87.5%;
     color: #fff;
     background-color: #212529;
     border-radius: 0.2rem; }
 kbd kbd {
     padding: 0;
-    font-size: 100%;
+    fontSize: 100%;
     font-weight: 700; }
 
 pre {
     display: block;
-    font-size: 87.5%;
+    fontSize: 87.5%;
     color: #212529; }
 pre code {
-    font-size: inherit;
+    fontSize: inherit;
     color: inherit;
     word-break: normal; }
 
@@ -1593,7 +1593,7 @@ pre code {
     width: 100%;
     height: calc(1.5em + 0.75rem + 2px);
     padding: 0.375rem 0.75rem;
-    font-size: 1rem;
+    fontSize: 1rem;
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
@@ -1650,19 +1650,19 @@ select.form-control:focus::-ms-value {
     padding-top: calc(0.375rem + 1px);
     padding-bottom: calc(0.375rem + 1px);
     margin-bottom: 0;
-    font-size: inherit;
+    fontSize: inherit;
     line-height: 1.5; }
 
 .col-form-label-lg {
     padding-top: calc(0.5rem + 1px);
     padding-bottom: calc(0.5rem + 1px);
-    font-size: 1.25rem;
+    fontSize: 1.25rem;
     line-height: 1.5; }
 
 .col-form-label-sm {
     padding-top: calc(0.25rem + 1px);
     padding-bottom: calc(0.25rem + 1px);
-    font-size: 0.875rem;
+    fontSize: 0.875rem;
     line-height: 1.5; }
 
 .form-control-plaintext {
@@ -1683,14 +1683,14 @@ select.form-control:focus::-ms-value {
 .form-control-sm {
     height: calc(1.5em + 0.5rem + 2px);
     padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
+    fontSize: 0.875rem;
     line-height: 1.5;
     border-radius: 0.2rem; }
 
 .form-control-lg {
     height: calc(1.5em + 1rem + 2px);
     padding: 0.5rem 1rem;
-    font-size: 1.25rem;
+    fontSize: 1.25rem;
     line-height: 1.5;
     border-radius: 0.3rem; }
 
@@ -1754,7 +1754,7 @@ textarea.form-control {
     display: none;
     width: 100%;
     margin-top: 0.25rem;
-    font-size: 80%;
+    fontSize: 80%;
     color: #28a745; }
 
 .valid-tooltip {
@@ -1765,7 +1765,7 @@ textarea.form-control {
     max-width: 100%;
     padding: 0.25rem 0.5rem;
     margin-top: .1rem;
-    font-size: 0.875rem;
+    fontSize: 0.875rem;
     line-height: 1.5;
     color: #fff;
     background-color: rgba(40, 167, 69, 0.9);
@@ -1855,7 +1855,7 @@ textarea.form-control {
     display: none;
     width: 100%;
     margin-top: 0.25rem;
-    font-size: 80%;
+    fontSize: 80%;
     color: #dc3545; }
 
 .invalid-tooltip {
@@ -1866,7 +1866,7 @@ textarea.form-control {
     max-width: 100%;
     padding: 0.25rem 0.5rem;
     margin-top: .1rem;
-    font-size: 0.875rem;
+    fontSize: 0.875rem;
     line-height: 1.5;
     color: #fff;
     background-color: rgba(220, 53, 69, 0.9);
@@ -2043,7 +2043,7 @@ textarea.form-control {
     background-color: transparent;
     border: 1px solid transparent;
     padding: 0.375rem 0.75rem;
-    font-size: 1rem;
+    fontSize: 1rem;
     line-height: 1.5;
     border-radius: 0.25rem;
     -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
@@ -2471,13 +2471,13 @@ fieldset:disabled a.btn {
 
 .btn-lg, .btn-group-lg > .btn {
     padding: 0.5rem 1rem;
-    font-size: 1.25rem;
+    fontSize: 1.25rem;
     line-height: 1.5;
     border-radius: 0.3rem; }
 
 .btn-sm, .btn-group-sm > .btn {
     padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
+    fontSize: 0.875rem;
     line-height: 1.5;
     border-radius: 0.2rem; }
 
@@ -2550,7 +2550,7 @@ input[type="button"].btn-block {
     min-width: 10rem;
     padding: 0.5rem 0;
     margin: 0.125rem 0 0;
-    font-size: 1rem;
+    fontSize: 1rem;
     color: #212529;
     text-align: left;
     list-style: none;
@@ -2713,7 +2713,7 @@ input[type="button"].btn-block {
     display: block;
     padding: 0.5rem 1.5rem;
     margin-bottom: 0;
-    font-size: 0.875rem;
+    fontSize: 0.875rem;
     color: #6c757d;
     white-space: nowrap; }
 
@@ -2925,7 +2925,7 @@ input[type="button"].btn-block {
     align-items: center;
     padding: 0.375rem 0.75rem;
     margin-bottom: 0;
-    font-size: 1rem;
+    fontSize: 1rem;
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
@@ -2949,7 +2949,7 @@ input[type="button"].btn-block {
 .input-group-lg > .input-group-prepend > .btn,
 .input-group-lg > .input-group-append > .btn {
     padding: 0.5rem 1rem;
-    font-size: 1.25rem;
+    fontSize: 1.25rem;
     line-height: 1.5;
     border-radius: 0.3rem; }
 
@@ -2964,7 +2964,7 @@ input[type="button"].btn-block {
 .input-group-sm > .input-group-prepend > .btn,
 .input-group-sm > .input-group-append > .btn {
     padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
+    fontSize: 0.875rem;
     line-height: 1.5;
     border-radius: 0.2rem; }
 
@@ -3114,7 +3114,7 @@ input[type="button"].btn-block {
     width: 100%;
     height: calc(1.5em + 0.75rem + 2px);
     padding: 0.375rem 1.75rem 0.375rem 0.75rem;
-    font-size: 1rem;
+    fontSize: 1rem;
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
@@ -3149,14 +3149,14 @@ input[type="button"].btn-block {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
     padding-left: 0.5rem;
-    font-size: 0.875rem; }
+    fontSize: 0.875rem; }
 
 .custom-select-lg {
     height: calc(1.5em + 1rem + 2px);
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     padding-left: 1rem;
-    font-size: 1.25rem; }
+    fontSize: 1.25rem; }
 
 .custom-file {
     position: relative;
@@ -3458,7 +3458,7 @@ input[type="button"].btn-block {
     padding-top: 0.3125rem;
     padding-bottom: 0.3125rem;
     margin-right: 1rem;
-    font-size: 1.25rem;
+    fontSize: 1.25rem;
     line-height: inherit;
     white-space: nowrap; }
 .navbar-brand:hover, .navbar-brand:focus {
@@ -3499,7 +3499,7 @@ input[type="button"].btn-block {
 
 .navbar-toggler {
     padding: 0.25rem 0.75rem;
-    font-size: 1.25rem;
+    fontSize: 1.25rem;
     line-height: 1;
     background-color: transparent;
     border: 1px solid transparent;
@@ -4053,7 +4053,7 @@ input[type="button"].btn-block {
 
 .pagination-lg .page-link {
     padding: 0.75rem 1.5rem;
-    font-size: 1.25rem;
+    fontSize: 1.25rem;
     line-height: 1.5; }
 
 .pagination-lg .page-item:first-child .page-link {
@@ -4066,7 +4066,7 @@ input[type="button"].btn-block {
 
 .pagination-sm .page-link {
     padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
+    fontSize: 0.875rem;
     line-height: 1.5; }
 
 .pagination-sm .page-item:first-child .page-link {
@@ -4080,7 +4080,7 @@ input[type="button"].btn-block {
 .badge {
     display: inline-block;
     padding: 0.25em 0.4em;
-    font-size: 75%;
+    fontSize: 75%;
     font-weight: 700;
     line-height: 1;
     text-align: center;
@@ -4325,7 +4325,7 @@ a.badge-dark:focus, a.badge-dark.focus {
     display: flex;
     height: 1rem;
     overflow: hidden;
-    font-size: 0.75rem;
+    fontSize: 0.75rem;
     background-color: #e9ecef;
     border-radius: 0.25rem; }
 
@@ -4626,7 +4626,7 @@ a.badge-dark:focus, a.badge-dark.focus {
 
 .close {
     float: right;
-    font-size: 1.5rem;
+    fontSize: 1.5rem;
     font-weight: 700;
     line-height: 1;
     color: #000;
@@ -4652,7 +4652,7 @@ a.close.disabled {
 .toast {
     max-width: 350px;
     overflow: hidden;
-    font-size: 0.875rem;
+    fontSize: 0.875rem;
     background-color: rgba(255, 255, 255, 0.85);
     background-clip: padding-box;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -4898,7 +4898,7 @@ a.close.disabled {
     word-spacing: normal;
     white-space: normal;
     line-break: auto;
-    font-size: 0.875rem;
+    fontSize: 0.875rem;
     word-wrap: break-word;
     opacity: 0; }
 .tooltip.show {
@@ -4983,7 +4983,7 @@ a.close.disabled {
     word-spacing: normal;
     white-space: normal;
     line-break: auto;
-    font-size: 0.875rem;
+    fontSize: 0.875rem;
     word-wrap: break-word;
     background-color: #fff;
     background-clip: padding-box;
@@ -5072,7 +5072,7 @@ a.close.disabled {
 .popover-header {
     padding: 0.5rem 0.75rem;
     margin-bottom: 0;
-    font-size: 1rem;
+    fontSize: 1rem;
     background-color: #f7f7f7;
     border-bottom: 1px solid #ebebeb;
     border-top-left-radius: calc(0.3rem - 1px);
@@ -8134,7 +8134,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 body {
     font-family: "Poppins", Arial, sans-serif;
-    font-size: 16px;
+    fontSize: 16px;
     line-height: 1.8;
     font-weight: normal;
     background: #fafafa;
@@ -8171,7 +8171,7 @@ h1, h2, h3, h4, h5,
     padding-bottom: 0; }
 
 .heading-section {
-    font-size: 28px;
+    fontSize: 28px;
     color: #fff; }
 
 .bg-hero {
@@ -8197,7 +8197,7 @@ h1, h2, h3, h4, h5,
     height: 52px;
     background: #fff;
     color: #000;
-    font-size: 14px;
+    fontSize: 14px;
     border-radius: 2px;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
@@ -8241,7 +8241,7 @@ textarea.form-control {
 .info-wrap .dbox p span {
     font-weight: 400;
     color: rgba(255, 255, 255, 0.4);
-    font-size: 20px;
+    fontSize: 20px;
     display: block;
     text-transform: uppercase; }
 .info-wrap .dbox p a {
@@ -8249,7 +8249,7 @@ textarea.form-control {
 .info-wrap .dbox .icon {
     margin-top: 10px; }
 .info-wrap .dbox .icon span {
-    font-size: 24px;
+    fontSize: 24px;
     color: #fff; }
 .info-wrap .dbox .text {
     width: 100%; }
@@ -8259,7 +8259,7 @@ textarea.form-control {
     cursor: pointer;
     border-width: 1px;
     border-radius: 5px;
-    font-size: 14px;
+    fontSize: 14px;
     font-weight: 400;
     -webkit-box-shadow: 0px 10px 20px -6px rgba(0, 0, 0, 0.12);
     -moz-box-shadow: 0px 10px 20px -6px rgba(0, 0, 0, 0.12);
@@ -8288,10 +8288,10 @@ textarea.form-control {
 
 #contactForm .error {
     color: red;
-    font-size: 12px; }
+    fontSize: 12px; }
 
 #contactForm .form-control {
-    font-size: 16px; }
+    fontSize: 16px; }
 
 #message {
     resize: vertical; }
@@ -8304,7 +8304,7 @@ textarea.form-control {
 
 #form-message-success {
     color: #28a745;
-    font-size: 18px;
+    fontSize: 18px;
     font-weight: 500; }
 
 .submitting {
@@ -8312,5 +8312,5 @@ textarea.form-control {
     width: 100%;
     padding: 10px 0;
     display: none;
-    font-size: 16px;
+    fontSize: 16px;
     font-weight: 500; }

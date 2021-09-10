@@ -5,6 +5,8 @@ import fb_button from '../assets/images/buttons/facebook.png'
 import google_btn from '../assets/images/buttons/google.png'
 import linkedin_btn from '../assets/images/buttons/linkedin.png'
 
+import login_bg from '../assets/images/login-bg.jpg'
+
 export default class Login extends Component {
 
     constructor() {
@@ -88,14 +90,7 @@ export default class Login extends Component {
 
                             </form>
 
-                            <div className="login100-more" style={{
-                                backgroundImage: `url("https://images.pexels.com/photos/370659/pexels-photo-370659.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")`
-                            }}>
-
-
-                                {/*<img src={require('/images/image-name.png')} />*/}
-
-                            </div>
+                            <img className="login100-more" src={login_bg} alt="Login Image" />
 
                         </div>
                     </div>

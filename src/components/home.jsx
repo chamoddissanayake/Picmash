@@ -31,7 +31,7 @@ export default class Home extends Component {
                                          height="24" viewBox="0 0 24 24"/>
 
                                 </div>
-                                <input id="search" type="text" placeholder="What are you looking for?" style={{"font-size":"24px"}}/>
+                                <input id="search" type="text" placeholder="What are you looking for?" style={{"fontSize":"24px"}}/>
                             </div>
 
                             <div className="input-field fouth-wrap">

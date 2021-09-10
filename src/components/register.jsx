@@ -4,6 +4,8 @@ import '../css/util.css';
 import fb_button from '../assets/images/buttons/facebook.png'
 import google_btn from '../assets/images/buttons/google.png'
 import linkedin_btn from '../assets/images/buttons/linkedin.png'
+import login_bg from "../assets/images/login-bg.jpg";
+import register_bg from '../assets/images/register-bg.jpg'
 
 export default class Register extends Component {
 
@@ -87,14 +89,16 @@ export default class Register extends Component {
 
                             </form>
 
-                            <div className="login100-more" style={{
-                                backgroundImage: `url("https://images.pexels.com/photos/2769188/pexels-photo-2769188.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")`
-                            }}>
+                            <img className="login100-more" src={register_bg} alt="Login Image" />
+
+                            {/*<div className="login100-more" style={{*/}
+                            {/*    backgroundImage: `url("https://images.pexels.com/photos/2769188/pexels-photo-2769188.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")`*/}
+                            {/*}}>*/}
 
 
-                                {/*<img src={require('/images/image-name.png')} />*/}
+                            {/*    /!*<img src={require('/images/image-name.png')} />*!/*/}
 
-                            </div>
+                            {/*</div>*/}
 
                         </div>
                     </div>

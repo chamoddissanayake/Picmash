@@ -39,7 +39,7 @@ export default class Results extends Component {
                                                     ever since the 1500s.</p>
                                             </div>
                                             <div className="card-bottom-div">
-                                                <p className="price-font" style={{"font-size": "20px"}}>$ 10.00</p>
+                                                <p className="price-font" style={{"fontSize": "20px"}}>$ 10.00</p>
                                                 <button type="button" className="btn btn-primary">Try for Free Now
                                                 </button>
                                             </div>
@@ -65,7 +65,7 @@ export default class Results extends Component {
                                                     ever since the 1500s.</p>
                                             </div>
                                             <div className="card-bottom-div">
-                                                <p className="price-font" style={{"font-size": "20px"}}>$ 10.00</p>
+                                                <p className="price-font" style={{"fontSize": "20px"}}>$ 10.00</p>
                                                 <button type="button" className="btn btn-primary">Try for Free Now
                                                 </button>
                                             </div>
@@ -91,7 +91,7 @@ export default class Results extends Component {
                                                     ever since the 1500s.</p>
                                             </div>
                                             <div className="card-bottom-div">
-                                                <p className="price-font" style={{"font-size": "20px"}}>$ 10.00</p>
+                                                <p className="price-font" style={{"fontSize": "20px"}}>$ 10.00</p>
                                                 <button type="button" className="btn btn-primary">Try for Free Now
                                                 </button>
                                             </div>
@@ -117,7 +117,7 @@ export default class Results extends Component {
                                                     ever since the 1500s.</p>
                                             </div>
                                             <div className="card-bottom-div">
-                                                <p className="price-font" style={{"font-size": "20px"}}>$ 10.00</p>
+                                                <p className="price-font" style={{"fontSize": "20px"}}>$ 10.00</p>
                                                 <button type="button" className="btn btn-primary">Try for Free Now
                                                 </button>
                                             </div>
@@ -143,7 +143,7 @@ export default class Results extends Component {
                                                     ever since the 1500s.</p>
                                             </div>
                                             <div className="card-bottom-div">
-                                                <p className="price-font" style={{"font-size": "20px"}}>$ 10.00</p>
+                                                <p className="price-font" style={{"fontSize": "20px"}}>$ 10.00</p>
                                                 <button type="button" className="btn btn-primary">Try for Free Now
                                                 </button>
                                             </div>
@@ -169,7 +169,7 @@ export default class Results extends Component {
                                                     ever since the 1500s.</p>
                                             </div>
                                             <div className="card-bottom-div">
-                                                <p className="price-font" style={{"font-size": "20px"}}>$ 10.00</p>
+                                                <p className="price-font" style={{"fontSize": "20px"}}>$ 10.00</p>
                                                 <button type="button" className="btn btn-primary">Try for Free Now
                                                 </button>
                                             </div>
@@ -195,7 +195,7 @@ export default class Results extends Component {
                                                     ever since the 1500s.</p>
                                             </div>
                                             <div className="card-bottom-div">
-                                                <p className="price-font" style={{"font-size": "20px"}}>$ 10.00</p>
+                                                <p className="price-font" style={{"fontSize": "20px"}}>$ 10.00</p>
                                                 <button type="button" className="btn btn-primary">Try for Free Now
                                                 </button>
                                             </div>
@@ -221,7 +221,7 @@ export default class Results extends Component {
                                                     ever since the 1500s.</p>
                                             </div>
                                             <div className="card-bottom-div">
-                                                <p className="price-font" style={{"font-size": "20px"}}>$ 10.00</p>
+                                                <p className="price-font" style={{"fontSize": "20px"}}>$ 10.00</p>
                                                 <button type="button" className="btn btn-primary">Try for Free Now
                                                 </button>
                                             </div>

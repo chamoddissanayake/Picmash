@@ -37,9 +37,6 @@ export default class Sell extends Component {
     render() {
         return (
             <div className="container-contact100">
-                {/*<div className="contact100-map" style={{*/}
-                {/*    backgroundImage: `url("https://firebasestorage.googleapis.com/v0/b/projects-storage-8af30.appspot.com/o/ssd%2Fsell-bg.jpg?alt=media&token=9a94ae01-dc0b-44f9-8d2e-8c1474063017")`*/}
-                {/*}}></div>*/}
                 <img className="contact100-map" src={sell_bg}/>
 
                 <div className="wrap-contact100">

@@ -66,14 +66,14 @@
     margin-top: 10px;
     margin-bottom: 0px;
     padding-bottom: 0px;
-    font-size: 14px;
+    fontSize: 14px;
     letter-spacing: 1px;
     color: #000000;
 }
 #cards_landscape_wrap-2 .card-flyer .text-box h6{
     margin-top: 0px;
     margin-bottom: 4px;
-    font-size: 18px;
+    fontSize: 18px;
     font-weight: bold;
     text-transform: uppercase;
     font-family: 'Roboto Black', sans-serif;
@@ -83,7 +83,7 @@
 
 
 .card-grid-title{
-    font-size: 30px;
+    fontSize: 30px;
     font-weight: bold;
 }
 
@@ -92,7 +92,7 @@
 }
 
 .price-font{
-    /*font-size: 30px;*/
+    /*fontSize: 30px;*/
     font-weight: bold;
 }
 

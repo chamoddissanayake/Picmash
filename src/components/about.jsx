@@ -34,6 +34,7 @@ export default class AboutUs extends Component {
                                     <ul className="list-style-one">
 
                                         <table>
+                                            <tbody>
                                             <tr>
                                                 <th><img src="https://cdn-icons-png.flaticon.com/512/1355/1355667.png"
                                                          alt="*" width="30" height="30"/></th>
@@ -49,6 +50,7 @@ export default class AboutUs extends Component {
                                                          alt="*" width="30" height="30"/></td>
                                                 <td>Cheaper</td>
                                             </tr>
+                                            </tbody>
                                         </table>
 
 

@@ -42,7 +42,7 @@ body, html {
 /*---------------------------------------------*/
 a {
 	font-family: Poppins-Regular;
-	font-size: 14px;
+	fontSize: 14px;
 	line-height: 1.7;
 	color: #666666;
 	margin: 0px;
@@ -67,7 +67,7 @@ h1,h2,h3,h4,h5,h6 {
 
 p {
 	font-family: Poppins-Regular;
-	font-size: 14px;
+	fontSize: 14px;
 	line-height: 1.7;
 	color: #666666;
 	margin: 0px;
@@ -204,7 +204,7 @@ iframe {
 
 .contact100-form-title-1 {
   font-family: Poppins-Bold;
-  font-size: 20px;
+  fontSize: 20px;
   color: #fff;
   line-height: 1.2;
   text-align: center;
@@ -213,7 +213,7 @@ iframe {
 
 .contact100-form-title-2 {
   font-family: Poppins-Regular;
-  font-size: 15px;
+  fontSize: 15px;
   color: #fff;
   line-height: 1.5;
   text-align: center;
@@ -262,7 +262,7 @@ iframe {
   border-radius: 25px;
 
   font-family: Poppins-Regular;
-  font-size: 16px;
+  fontSize: 16px;
   color: #fff;
   line-height: 1.2;
 
@@ -326,7 +326,7 @@ iframe {
 
   font-family: Poppins-Medium;
   color: #c80000;
-  font-size: 13px;
+  fontSize: 13px;
   line-height: 1.4;
   text-align: left;
 
@@ -345,7 +345,7 @@ iframe {
   display: block;
   position: absolute;
   color: #c80000;
-  font-size: 15px;
+  fontSize: 15px;
   top: 50%;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);

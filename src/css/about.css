@@ -52,7 +52,7 @@ section {
 .sec-title .title{
     position: relative;
     display: block;
-    font-size: 18px;
+    fontSize: 18px;
     line-height: 24px;
     color: #ff2222;
     font-weight: 500;
@@ -62,7 +62,7 @@ section {
 .sec-title h2{
     position: relative;
     display: block;
-    font-size:40px;
+    fontSize:40px;
     line-height: 1.28em;
     color: #222222;
     font-weight: 600;
@@ -81,7 +81,7 @@ section {
 
 .sec-title .text{
     position: relative;
-    font-size: 16px;
+    fontSize: 16px;
     line-height: 26px;
     color: #848484;
     font-weight: 400;
@@ -103,7 +103,7 @@ section {
 
 .list-style-one li{
     position:relative;
-    font-size:16px;
+    fontSize:16px;
     line-height:26px;
     color: #222222;
     font-weight:400;
@@ -119,7 +119,7 @@ section {
     /*left: 0;*/
     /*top: 0px;*/
     /*display: block;*/
-    /*font-size: 18px;*/
+    /*fontSize: 18px;*/
     /*padding: 0px;*/
     /*color: #ff2222;*/
     /*font-weight: 600;*/
@@ -139,7 +139,7 @@ section {
 .btn-style-one{
     position: relative;
     display: inline-block;
-    font-size: 17px;
+    fontSize: 17px;
     line-height: 30px;
     color: #ffffff;
     padding: 10px 30px;
@@ -174,7 +174,7 @@ section {
 
 .about-section .text{
     margin-bottom: 40px;
-    font-size: 16px;
+    fontSize: 16px;
     line-height: 26px;
     color: #848484;
     font-weight: 400;
@@ -202,7 +202,7 @@ section {
     position: absolute;
     right: -110px;
     top: 50%;
-    font-size: 325px;
+    fontSize: 325px;
     line-height: 1em;
     color: #ffffff;
     margin-top: -175px;
@@ -250,7 +250,7 @@ section {
 .about-section .image-column .video-link .link{
     position: relative;
     display: block;
-    font-size: 22px;
+    fontSize: 22px;
     color: #191e34;
     font-weight: 400;
     text-align: center;
