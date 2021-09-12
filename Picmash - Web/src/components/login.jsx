@@ -24,8 +24,8 @@ export default class Login extends Component {
                     <div className="container-login100">
                         <div className="wrap-login100">
                             <form className="login100-form validate-form">
-					<span className="login100-form-title p-b-43">
-						Login to continue
+					<span className="login100-form-title p-b-35">
+                        <h2>Login to continue</h2>
 					</span>
 
 

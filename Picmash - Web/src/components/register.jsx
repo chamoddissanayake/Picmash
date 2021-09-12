@@ -24,11 +24,16 @@ export default class Register extends Component {
                     <div className="container-login100">
                         <div className="wrap-login100">
                             <form className="login100-form validate-form">
-					<span className="login100-form-title p-b-43">
-						Register
+					<span className="login100-form-title p-b-35">
+						<h2>Register</h2>
 					</span>
 
-
+                                <div className="wrap-input100 validate-input"
+                                     data-validate="Unique username required">
+                                    <input className="input100" type="text" name="username"/>
+                                    <span className="focus-input100"></span>
+                                    <span className="label-input100">Username</span>
+                                </div>
                                 <div className="wrap-input100 validate-input"
                                      data-validate="Valid email is required: ex@abc.xyz">
                                     <input className="input100" type="text" name="email"/>
@@ -38,7 +43,7 @@ export default class Register extends Component {
 
 
                                 <div className="wrap-input100 validate-input" data-validate="Password is required">
-                                    <input className="input100" type="password" name="pass"/>
+                                    <input className="input100" type="password" name="password"/>
                                     <span className="focus-input100"></span>
                                     <span className="label-input100">Password</span>
                                 </div>
