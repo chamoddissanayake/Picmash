@@ -4,10 +4,9 @@ import '../css/util.css';
 import fb_button from '../assets/images/buttons/facebook.png'
 import google_btn from '../assets/images/buttons/google.png'
 import linkedin_btn from '../assets/images/buttons/linkedin.png'
-import login_bg from "../assets/images/login-bg.jpg";
 import register_bg from '../assets/images/register-bg.jpg'
 import AuthService from "../services/auth.service";
-import { useHistory } from 'react-router-dom';
+import {  Redirect, Link } from 'react-router-dom';
 
 export default class Register extends Component {
 
@@ -64,7 +63,9 @@ export default class Register extends Component {
                    message: response.data.message,
                    is_registered: true
                 }, () => {
-                   alert("User registered successfully. Please login")
+                    alert("User registered successfully. Please login")
+                    // return (<Redirect to="/login" />)
+                    window.location.href = "/login";
                 });
             },
             error => {
@@ -78,7 +79,11 @@ export default class Register extends Component {
                 this.setState({
                     is_registered: false,
                     message: resMessage
+                }, () => {
+                    alert(this.state.message)
+                    window.location.href = "/register";
                 });
+
             }
         );
     }
@@ -87,6 +92,11 @@ export default class Register extends Component {
 
         if (this.state.reg_email_txt == "" || this.state.reg_username_txt == "" || this.state.reg_password_txt == "") {
             alert("Please fill all fields")
+            return false
+        }
+
+        if (this.state.reg_password_txt.length < 6) {
+            alert("Password should be longer than 6 characters.")
             return false
         }
 
