@@ -29,18 +29,29 @@ export default class Login extends Component {
 					</span>
 
 
-                                <div className="wrap-input100 validate-input"
-                                     data-validate="Valid email is required: ex@abc.xyz">
-                                    <input className="input100" type="text" name="email"/>
-                                    <span className="focus-input100"></span>
-                                    <span className="label-input100">Email</span>
+                                {/*<div className="wrap-input100 validate-input"*/}
+                                {/*     data-validate="Valid email is required: ex@abc.xyz">*/}
+                                {/*    <input className="input100" type="text" name="email"/>*/}
+                                {/*    <span className="focus-input100"></span>*/}
+                                {/*    <span className="label-input100">Email</span>*/}
+                                {/*</div>*/}
+
+
+                                {/*<div className="wrap-input100 validate-input" data-validate="Password is required">*/}
+                                {/*    <input className="input100" type="password" name="pass"/>*/}
+                                {/*    <span className="focus-input100"></span>*/}
+                                {/*    <span className="label-input100">Password</span>*/}
+                                {/*</div>*/}
+
+                                <div className="mb-0">
+                                    <label htmlFor="exampleInputEmail1" className="reg-form-label">Username</label>
+                                    <input type="email" className="form-control" id="exampleInputEmail1"
+                                           aria-describedby="emailHelp"/>
                                 </div>
 
-
-                                <div className="wrap-input100 validate-input" data-validate="Password is required">
-                                    <input className="input100" type="password" name="pass"/>
-                                    <span className="focus-input100"></span>
-                                    <span className="label-input100">Password</span>
+                                <div className="mb-0">
+                                    <label htmlFor="exampleInputPassword1" className="reg-form-label">Password</label>
+                                    <input type="password" className="form-control" id="exampleInputPassword1"/>
                                 </div>
 
                                 <div className="flex-sb-m w-full p-t-3 p-b-32">
