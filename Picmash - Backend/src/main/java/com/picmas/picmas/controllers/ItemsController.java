@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/items")
 public class ItemsController {
+    @CrossOrigin(origins = "*")
     @GetMapping("/all")
     public String allAccess() {
         System.out.println("-->Public Content");
         return "Public Content.";
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/user")
     @PreAuthorize("hasRole('USER') or  hasRole('ADMIN')")
     public String userAccess() {
@@ -23,6 +25,7 @@ public class ItemsController {
         return "User Content.";
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/admin")
     @PreAuthorize("hasRole('ADMIN')")
     public String adminAccess() {

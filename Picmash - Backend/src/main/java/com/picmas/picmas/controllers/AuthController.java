@@ -50,6 +50,7 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -76,6 +77,7 @@ public class AuthController {
                 roles));
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 

@@ -6,6 +6,8 @@ import google_btn from '../assets/images/buttons/google.png'
 import linkedin_btn from '../assets/images/buttons/linkedin.png'
 import login_bg from "../assets/images/login-bg.jpg";
 import register_bg from '../assets/images/register-bg.jpg'
+import AuthService from "../services/auth.service";
+import { useHistory } from 'react-router-dom';
 
 export default class Register extends Component {
 
@@ -15,6 +17,9 @@ export default class Register extends Component {
             reg_username_txt: '',
             reg_email_txt: '',
             reg_password_txt: '',
+
+            message: '',
+            is_registered: false
         };
 
         this.handleChangeRegUsername = this.handleChangeRegUsername.bind(this);
@@ -41,24 +46,54 @@ export default class Register extends Component {
     }
 
     handleRegFormSubmit() {
-        if(!this.validateInputs()){
+        if (!this.validateInputs()) {
             return
         }
 
-        alert(this.state.reg_email_txt+ " - " + this.state.reg_username_txt+" - "+this.state.reg_password_txt)
+        this.saveUser();
+    }
+
+    saveUser() {
+        AuthService.register(
+            this.state.reg_username_txt,
+            this.state.reg_email_txt,
+            this.state.reg_password_txt
+        ).then(
+            response => {
+                this.setState({
+                   message: response.data.message,
+                   is_registered: true
+                }, () => {
+                   alert("User registered successfully. Please login")
+                });
+            },
+            error => {
+                const resMessage =
+                    (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                    error.message ||
+                    error.toString();
+
+                this.setState({
+                    is_registered: false,
+                    message: resMessage
+                });
+            }
+        );
     }
 
     validateInputs() {
 
-        if(this.state.reg_email_txt==""|| this.state.reg_username_txt==""|| this.state.reg_password_txt==""){
+        if (this.state.reg_email_txt == "" || this.state.reg_username_txt == "" || this.state.reg_password_txt == "") {
             alert("Please fill all fields")
             return false
         }
 
         const emailRegex = /\S+@\S+\.\S+/;
-        if (emailRegex.test(this.state.reg_email_txt)){
+        if (emailRegex.test(this.state.reg_email_txt)) {
             return true
-        }else {
+        } else {
             alert("Incorrect email address")
             return false
         }
