@@ -11,9 +11,57 @@ export default class Register extends Component {
 
     constructor() {
         super();
+        this.state = {
+            reg_username_txt: '',
+            reg_email_txt: '',
+            reg_password_txt: '',
+        };
+
+        this.handleChangeRegUsername = this.handleChangeRegUsername.bind(this);
+        this.handleChangeRegEmail = this.handleChangeRegEmail.bind(this);
+        this.handleChangeRegPassword = this.handleChangeRegPassword.bind(this);
     }
 
     componentDidMount() {
+    }
+
+    handleChangeRegUsername(event) {
+        console.log(event.target.value)
+        this.setState({reg_username_txt: event.target.value});
+    }
+
+    handleChangeRegEmail(event) {
+        console.log(event.target.value)
+        this.setState({reg_email_txt: event.target.value});
+    }
+
+    handleChangeRegPassword(event) {
+        console.log(event.target.value)
+        this.setState({reg_password_txt: event.target.value});
+    }
+
+    handleRegFormSubmit() {
+        if(!this.validateInputs()){
+            return
+        }
+
+        alert(this.state.reg_email_txt+ " - " + this.state.reg_username_txt+" - "+this.state.reg_password_txt)
+    }
+
+    validateInputs() {
+
+        if(this.state.reg_email_txt==""|| this.state.reg_username_txt==""|| this.state.reg_password_txt==""){
+            alert("Please fill all fields")
+            return false
+        }
+
+        const emailRegex = /\S+@\S+\.\S+/;
+        if (emailRegex.test(this.state.reg_email_txt)){
+            return true
+        }else {
+            alert("Incorrect email address")
+            return false
+        }
 
     }
 
@@ -23,81 +71,61 @@ export default class Register extends Component {
                 <div className="limiter">
                     <div className="container-login100">
                         <div className="wrap-login100">
-                            <form className="login100-form validate-form">
-					<span className="login100-form-title p-b-5">
-						<h2>Register</h2>
-					</span>
+                            <div className="login100-form validate-form">
+                                <span className="login100-form-title p-b-5">
+                                    <h2>Register</h2>
+                                </span>
 
-                                {/*<div className="wrap-input100 validate-input"*/}
-                                {/*     data-validate="Unique username required">*/}
-                                {/*    <input className="input100" type="text" name="username"/>*/}
-                                {/*    <span className="focus-input100"></span>*/}
-                                {/*    <span className="label-input100">Username</span>*/}
-                                {/*</div>*/}
-                                {/*<div className="wrap-input100 validate-input"*/}
-                                {/*     data-validate="Valid email is required: ex@abc.xyz">*/}
-                                {/*    <input className="input100" type="text" name="email"/>*/}
-                                {/*    <span className="focus-input100"></span>*/}
-                                {/*    <span className="label-input100">Email</span>*/}
-                                {/*</div>*/}
+                                <div className="mb-0">
+                                    <label htmlFor="exampleInputEmail1" className="reg-form-label">Username</label>
+                                    <input type="text" className="form-control"
+                                           aria-describedby="emailHelp" onChange={this.handleChangeRegUsername}/>
+                                </div>
 
-
-                                {/*<div className="wrap-input100 validate-input" data-validate="Password is required">*/}
-                                {/*    <input className="input100" type="password" name="password"/>*/}
-                                {/*    <span className="focus-input100"></span>*/}
-                                {/*    <span className="label-input100">Password</span>*/}
-                                {/*</div>*/}
-                                <form>
-                                    <div className="mb-0">
-                                        <label htmlFor="exampleInputEmail1" className="reg-form-label">Username</label>
-                                        <input type="email" className="form-control" id="exampleInputEmail1"
-                                               aria-describedby="emailHelp"/>
+                                <div className="mb-0">
+                                    <label htmlFor="exampleInputEmail1" className="reg-form-label">Email address</label>
+                                    <input type="email" className="form-control"
+                                           aria-describedby="emailHelp" onChange={this.handleChangeRegEmail}/>
+                                </div>
+                                <div className="mb-0">
+                                    <label htmlFor="exampleInputPassword1" className="reg-form-label">Password</label>
+                                    <input type="password" className="form-control"
+                                           onChange={this.handleChangeRegPassword}/>
+                                </div>
+                                <div className="flex-sb-m w-full p-t-3 p-b-32">
+                                    <div className="contact100-form-checkbox">
+                                        <input className="input-checkbox100" id="ckb1" type="checkbox"
+                                               name="remember-me"/>
+                                        <label className="label-checkbox100" htmlFor="ckb1">
+                                            Remember me
+                                        </label>
                                     </div>
 
-                                    <div className="mb-0">
-                                        <label htmlFor="exampleInputEmail1" className="reg-form-label">Email address</label>
-                                        <input type="email" className="form-control" id="exampleInputEmail1"
-                                               aria-describedby="emailHelp"/>
+                                    <div>
+                                        <a href="" className="txt1">
+                                            Forgot Password?
+                                        </a>
                                     </div>
-                                    <div className="mb-0">
-                                        <label htmlFor="exampleInputPassword1" className="reg-form-label">Password</label>
-                                        <input type="password" className="form-control" id="exampleInputPassword1"/>
-                                    </div>
-                                    <div className="flex-sb-m w-full p-t-3 p-b-32">
-                                        <div className="contact100-form-checkbox">
-                                            <input className="input-checkbox100" id="ckb1" type="checkbox"
-                                                   name="remember-me"/>
-                                            <label className="label-checkbox100" htmlFor="ckb1">
-                                                Remember me
-                                            </label>
-                                        </div>
-
-                                        <div>
-                                            <a href="" className="txt1">
-                                                Forgot Password?
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className= "redirect-login-register">
+                                </div>
+                                <div className="redirect-login-register">
                                     <span className="txt2">
                                         Do You have an account? <a href="/login">Login </a>now
                                     </span>
-                                    </div>
+                                </div>
 
-                                    <div className="container-login100-form-btn">
-                                        <button className="login100-form-btn">
-                                            Register
-                                        </button>
-                                    </div>
-
-                                </form>
-
+                                <div className="container-login100-form-btn">
+                                    <button className="login100-form-btn" onClick={() => this.handleRegFormSubmit()}>
+                                        Register
+                                    </button>
+                                </div>
 
 
                                 <div className="text-center p-t-46 p-b-20 temp-upper-padding">
-						<span className="txt2">
-							or sign up using
-						</span>
+
+                                    <span className="txt2">
+                                        or sign up using
+                                    </span>
+
                                 </div>
                                 <div className="social-btn-container">
                                     <div>
@@ -111,9 +139,9 @@ export default class Register extends Component {
                                     </div>
                                 </div>
 
-                            </form>
+                            </div>
 
-                            <img className="login100-more" src={register_bg} alt="Login Image" />
+                            <img className="login100-more" src={register_bg} alt="Login Image"/>
 
                             {/*<div className="login100-more" style={{*/}
                             {/*    backgroundImage: `url("https://images.pexels.com/photos/2769188/pexels-photo-2769188.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")`*/}

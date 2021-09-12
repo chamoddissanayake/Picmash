@@ -24,11 +24,11 @@ export default class Sell extends Component {
     }
 
     handleChange(event) {
-        if (event.target.value == 'local') {
+        if (event.target.value === 'local') {
             this.setState({file_select_type: 'local'});
-        } else if (event.target.value == 'drive') {
+        } else if (event.target.value === 'drive') {
             this.setState({file_select_type: 'drive'});
-        } else if (event.target.value == 'facebook') {
+        } else if (event.target.value === 'facebook') {
             this.setState({file_select_type: 'facebook'});
         }
 
@@ -119,7 +119,7 @@ export default class Sell extends Component {
                                     {/*value={value} onChange={handleChange}*/}
                                     <div className="col-75">
 
-                                        {this.state.file_select_type == "local" && <span>
+                                        {this.state.file_select_type === "local" && <span>
                                         <div className="selected-choose-type-container">
                                             {/*Local Image Picker start*/}
                                             {/*<p>Local file selector</p>*/}
@@ -130,13 +130,13 @@ export default class Sell extends Component {
                                         </div>
                                     </span>}
 
-                                        {this.state.file_select_type == "drive" && <span>
+                                        {this.state.file_select_type === "drive" && <span>
                                         <div className="selected-choose-type-container">
                                             <p>Drive file selector</p>
                                         </div>
                                     </span>}
 
-                                        {this.state.file_select_type == "facebook" && <span>
+                                        {this.state.file_select_type === "facebook" && <span>
                                         <div className="selected-choose-type-container">
                                             <p>Facebook file selector</p>
                                         </div>
