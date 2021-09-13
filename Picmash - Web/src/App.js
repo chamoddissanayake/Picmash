@@ -16,6 +16,8 @@ import Browse from "./components/browse";
 import Contact from "./components/contact";
 import AboutUs from "./components/about";
 import './css/general.css';
+import AuthService from "../src/services/auth.service";
+
 
 
 function App() {
@@ -53,6 +55,7 @@ function App() {
 
 
                         </ul>
+
                         <a href="/login">
                             <button className="btn btn-outline-primary" type="submit">Login</button>
                         </a>

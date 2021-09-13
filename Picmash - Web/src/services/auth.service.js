@@ -12,6 +12,7 @@ class AuthService {
       .then(response => {
         if (response.data.accessToken) {
           localStorage.setItem("user", JSON.stringify(response.data));
+          localStorage.setItem("type", "general");
         }
 
         return response.data;
@@ -19,7 +20,13 @@ class AuthService {
   }
 
   logout() {
-    localStorage.removeItem("user");
+
+    const logged_in_user_type = localStorage.getItem("type");
+    if(logged_in_user_type=='general'){
+      localStorage.removeItem("user");
+      localStorage.removeItem("type");
+    }
+
   }
 
   register(username, email, password) {
@@ -31,7 +38,17 @@ class AuthService {
   }
 
   getCurrentUser() {
-    return JSON.parse(localStorage.getItem('user'));;
+    const logged_in_user_type = localStorage.getItem("type");
+    if(logged_in_user_type=='general'){
+      const logged_in_user ={
+        "type":localStorage.getItem('user'),
+        "user":localStorage.getItem('type')
+      }
+      return JSON.parse(logged_in_user);
+    }
+    return null
+
+
   }
 }
 

@@ -55,11 +55,14 @@ export default class Login extends Component {
                     error.message ||
                     error.toString();
 
+                if (error.response.status == 401) {
+                    alert("username or password incorrect")
+                }
 
                 this.setState({
                     message: resMessage
                 }, () => {
-                    alert(this.state.message)
+                    window.location.href = "/login";
                 });
 
             }
