@@ -44,7 +44,6 @@ export default class Login extends Component {
     loginUser() {
         AuthService.login(this.state.log_username_txt, this.state.log_password_txt).then(
             () => {
-                alert('logged in successfully')
                 window.location.href = "/";
             },
             error => {
