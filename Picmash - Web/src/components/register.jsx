@@ -64,7 +64,6 @@ export default class Register extends Component {
                    is_registered: true
                 }, () => {
                     alert("User registered successfully. Please login")
-                    // return (<Redirect to="/login" />)
                     window.location.href = "/login";
                 });
             },
@@ -107,7 +106,6 @@ export default class Register extends Component {
             alert("Incorrect email address")
             return false
         }
-
     }
 
     render() {
