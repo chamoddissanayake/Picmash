@@ -177,26 +177,28 @@ export default class Sell extends Component {
                                                           multiselect={true}
                                                           navHidden={true}
                                                           authImmediate={false}
-                                                          mimeTypes={['image/png', 'image/jpeg', 'image/jpg']}
+                                                          // mimeTypes={['image/png', 'image/jpeg', 'image/jpg']}
                                                           query={'a query string like .txt or fileName'}
                                                           viewId={'DOCS'}  onChange={data => console.log('on change:', data)}
                                                           onAuthFailed={data => console.log('on auth failed:', data)}
                                                           multiselect={true}
                                                           navHidden={true}
                                                           authImmediate={false}
-                                                          viewId={'FOLDERS'}
+                                                          // viewId={'FOLDERS'}
                                                           createPicker={ (google, oauthToken) => {
                                                               const googleViewId = google.picker.ViewId.FOLDERS;
                                                               const docsView = new google.picker.DocsView(googleViewId)
                                                                   .setIncludeFolders(true)
-                                                                  .setMimeTypes('application/vnd.google-apps.folder')
+                                                                  // .setMimeTypes('application/vnd.google-apps.folder')
+                                                                  .setMimeTypes('application/vnd.google-apps.file')
                                                                   .setSelectFolderEnabled(true);
 
                                                               const picker = new window.google.picker.PickerBuilder()
                                                                   .addView(docsView)
                                                                   .setOAuthToken(oauthToken)
                                                                   // .setDeveloperKey('AIzaSyBJG2E08YMitCRBQSzyuJX6I57MOhfXrRs')
-                                                                  .setCallback(()=>{
+                                                                  .setCallback((data)=>{
+                                                                      console.log(data)
                                                                       console.log('Custom picker is ready!');
                                                                   });
 
