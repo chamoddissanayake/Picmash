@@ -25,6 +25,9 @@ class AuthService {
     if(logged_in_user_type=='general'){
       localStorage.removeItem("user");
       localStorage.removeItem("type");
+    } else if(logged_in_user_type=='google'){
+      localStorage.removeItem("user");
+      localStorage.removeItem("type");
     }
 
   }
@@ -39,7 +42,7 @@ class AuthService {
 
   getCurrentUser() {
     const logged_in_user_type = localStorage.getItem("type");
-    if(logged_in_user_type=='general'){
+    if(logged_in_user_type=='general' || logged_in_user_type=='google'){
       const logged_in_user ={
         "user":localStorage.getItem('user'),
         "type":localStorage.getItem('type')

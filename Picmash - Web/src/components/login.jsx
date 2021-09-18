@@ -8,6 +8,8 @@ import linkedin_btn from '../assets/images/buttons/linkedin.png'
 import login_bg from '../assets/images/login-bg.jpg'
 import AuthService from "../services/auth.service";
 
+import GoogleLogin from 'react-google-login';
+
 export default class Login extends Component {
 
     constructor() {
@@ -88,6 +90,24 @@ export default class Login extends Component {
 
     }
 
+
+    responseGoogleSuccess(response) {
+        // console.log(response);
+        // console.log(response);
+
+        localStorage.setItem("user", JSON.stringify(response));
+        localStorage.setItem("type", "google");
+        window.location.href = "/";
+
+    }
+    responseGoogleFailure(response) {
+        console.log(response.error);
+        if (response.error != 'popup_closed_by_user'){
+            alert("Something went wrong")
+        }
+        window.location.href = "/login";
+    }
+
     render() {
         return (
             <div>
@@ -149,7 +169,15 @@ export default class Login extends Component {
                                         <img src={fb_button} className="social-btn-common" alt="Sign with Facebook"/>
                                     </div>
                                     <div>
-                                        <img src={google_btn} className="social-btn-common" alt="Sign with Google"/>
+                                        {/*<img src={google_btn} className="social-btn-common" alt="Sign with Google"/>*/}
+                                        <GoogleLogin
+                                            clientId="801360513499-u7sc20pvp4nkkigtgvnnaajp4hcq4ate.apps.googleusercontent.com"
+                                            buttonText="Login"
+                                            onSuccess={this.responseGoogleSuccess}
+                                            onFailure={this.responseGoogleFailure}
+                                            cookiePolicy={'single_host_origin'}
+                                        />,
+
                                     </div>
                                     <div>
                                         <img src={linkedin_btn} className="social-btn-common" alt="Sign with Linkedin"/>
