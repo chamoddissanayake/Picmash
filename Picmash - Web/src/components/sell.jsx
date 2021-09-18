@@ -28,9 +28,10 @@ export default class Sell extends Component {
             this.setState({file_select_type: 'local'});
         } else if (event.target.value === 'drive') {
             this.setState({file_select_type: 'drive'});
-        } else if (event.target.value === 'facebook') {
-            this.setState({file_select_type: 'facebook'});
         }
+        // else if (event.target.value === 'facebook') {
+        //     this.setState({file_select_type: 'facebook'});
+        // }
 
     }
 
@@ -110,10 +111,10 @@ export default class Sell extends Component {
                                                 <div className="form-check form-check-inline">
                                                     <FormControlLabel value="drive" control={<Radio/>} label="Google"/>
                                                 </div>
-                                                <div className="form-check form-check-inline">
-                                                    <FormControlLabel value="facebook" control={<Radio/>}
-                                                                      label="Facebook"/>
-                                                </div>
+                                                {/*<div className="form-check form-check-inline">*/}
+                                                {/*    <FormControlLabel value="facebook" control={<Radio/>}*/}
+                                                {/*                      label="Facebook"/>*/}
+                                                {/*</div>*/}
                                             </span>
                                     </RadioGroup>
                                     {/*value={value} onChange={handleChange}*/}
@@ -136,11 +137,11 @@ export default class Sell extends Component {
                                         </div>
                                     </span>}
 
-                                        {this.state.file_select_type === "facebook" && <span>
-                                        <div className="selected-choose-type-container">
-                                            <p>Facebook file selector</p>
-                                        </div>
-                                    </span>}
+                                    {/*    {this.state.file_select_type === "facebook" && <span>*/}
+                                    {/*    <div className="selected-choose-type-container">*/}
+                                    {/*        <p>Facebook file selector</p>*/}
+                                    {/*    </div>*/}
+                                    {/*</span>}*/}
 
                                     </div>
                                 </div>

@@ -9,6 +9,7 @@ import login_bg from '../assets/images/login-bg.jpg'
 import AuthService from "../services/auth.service";
 
 import GoogleLogin from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
 
 export default class Login extends Component {
 
@@ -108,6 +109,10 @@ export default class Login extends Component {
         window.location.href = "/login";
     }
 
+    responseFacebook (response) {
+        console.log(response);
+    }
+
     render() {
         return (
             <div>
@@ -166,7 +171,19 @@ export default class Login extends Component {
                                 </div>
                                 <div className="social-btn-container">
                                     <div>
-                                        <img src={fb_button} className="social-btn-common" alt="Sign with Facebook"/>
+                                        {/*<img src={fb_button} className="social-btn-common" alt="Sign with Facebook"/>*/}
+                                        {/*<FacebookLogin*/}
+                                        {/*    appId="217211390428553"*/}
+                                        {/*    // autoLoad={true}*/}
+                                        {/*    fields="name,email,picture"*/}
+                                        {/*    callback={this.responseFacebook}*/}
+                                        {/*    cssClass="my-facebook-button-class"*/}
+                                        {/*    scope="public_profile"*/}
+                                        {/*    icon="fa-facebook"*/}
+                                        {/*/>*/}
+
+
+
                                     </div>
                                     <div>
                                         {/*<img src={google_btn} className="social-btn-common" alt="Sign with Google"/>*/}
@@ -176,7 +193,7 @@ export default class Login extends Component {
                                             onSuccess={this.responseGoogleSuccess}
                                             onFailure={this.responseGoogleFailure}
                                             cookiePolicy={'single_host_origin'}
-                                        />,
+                                        />
 
                                     </div>
                                     <div>
