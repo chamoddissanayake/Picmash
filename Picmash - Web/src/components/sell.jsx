@@ -7,6 +7,7 @@ import sell_bg from '../assets/images/sell-bg.jpg'
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import AuthService from "../services/auth.service";
 
 export default class Sell extends Component {
 
@@ -29,9 +30,22 @@ export default class Sell extends Component {
         } else if (event.target.value === 'drive') {
             this.setState({file_select_type: 'drive'});
         }
-        // else if (event.target.value === 'facebook') {
-        //     this.setState({file_select_type: 'facebook'});
-        // }
+
+    }
+
+    chooseGoogleFileBtnPressed() {
+
+        const currentUser = AuthService.getCurrentUser();
+
+        // console.log(currentUser)
+        console.log(currentUser.type)
+        if (currentUser == 'general') {
+        // google login with permission
+
+        }else if (currentUser == 'google') {
+        // get permission
+
+        }
 
     }
 
@@ -111,10 +125,6 @@ export default class Sell extends Component {
                                                 <div className="form-check form-check-inline">
                                                     <FormControlLabel value="drive" control={<Radio/>} label="Google"/>
                                                 </div>
-                                                {/*<div className="form-check form-check-inline">*/}
-                                                {/*    <FormControlLabel value="facebook" control={<Radio/>}*/}
-                                                {/*                      label="Facebook"/>*/}
-                                                {/*</div>*/}
                                             </span>
                                     </RadioGroup>
                                     {/*value={value} onChange={handleChange}*/}
@@ -133,15 +143,9 @@ export default class Sell extends Component {
 
                                         {this.state.file_select_type === "drive" && <span>
                                         <div className="selected-choose-type-container">
-                                            <p>Drive file selector</p>
+                                            <input onClick={this.chooseGoogleFileBtnPressed} type="button" value="Choose image from Google Drive"/>
                                         </div>
                                     </span>}
-
-                                    {/*    {this.state.file_select_type === "facebook" && <span>*/}
-                                    {/*    <div className="selected-choose-type-container">*/}
-                                    {/*        <p>Facebook file selector</p>*/}
-                                    {/*    </div>*/}
-                                    {/*</span>}*/}
 
                                     </div>
                                 </div>
