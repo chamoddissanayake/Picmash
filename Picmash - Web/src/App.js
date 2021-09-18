@@ -113,7 +113,7 @@ export default class App extends Component {
                             <div style={{width: "10px"}}></div>}
 
                             {this.state.is_loggedIn == true && this.state.logged_in_user_type == 'general' && <div>
-                                <a href="/logout">
+                                <a href="/">
                                     <button className="btn btn btn-link" type="submit"
                                             onClick={() => this.handleLogoutPressed()}>Logout
                                     </button>
