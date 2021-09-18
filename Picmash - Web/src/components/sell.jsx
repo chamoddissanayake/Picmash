@@ -9,6 +9,12 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import AuthService from "../services/auth.service";
 
+// import GooglePicker from '../';
+import GooglePicker from 'react-google-picker';
+
+// import  { useEffect } from 'react';
+// import useDrivePicker from 'react-google-drive-picker'
+
 export default class Sell extends Component {
 
 
@@ -16,6 +22,7 @@ export default class Sell extends Component {
         super(props);
         this.state = {
             file_select_type: 'local'
+            // openPicker : useDrivePicker()
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -48,6 +55,22 @@ export default class Sell extends Component {
         }
 
     }
+
+
+    // handleOpenPicker(){
+    //
+    //     openPicker({
+    //         clientId: "xxxxxxxxxxxxxxxxx",
+    //         developerKey: "xxxxxxxxxxxx",
+    //         viewId: "DOCS",
+    //         // token: token, // pass oauth token in case you already have one
+    //         showUploadView: true,
+    //         showUploadFolders: true,
+    //         supportDrives: true,
+    //         multiselect: true,
+    //         // customViews: customViewsArray, // custom view
+    //     })
+    // }
 
     render() {
         return (
@@ -143,7 +166,47 @@ export default class Sell extends Component {
 
                                         {this.state.file_select_type === "drive" && <span>
                                         <div className="selected-choose-type-container">
-                                            <input onClick={this.chooseGoogleFileBtnPressed} type="button" value="Choose image from Google Drive"/>
+                                            {/*<input onClick={this.chooseGoogleFileBtnPressed} type="button" value="Choose image from Google Drive"/>*/}
+                                            {/*<button onClick={this.handleOpenPicker}>Open Picker</button>*/}
+
+                                            <GooglePicker clientId={'801360513499-u7sc20pvp4nkkigtgvnnaajp4hcq4ate.apps.googleusercontent.com'}
+                                                          developerKey={'AIzaSyBJG2E08YMitCRBQSzyuJX6I57MOhfXrRs'}
+                                                          scope={['https://www.googleapis.com/auth/drive.readonly']}
+                                                          onChange={data => console.log('on change:', data)}
+                                                          onAuthFailed={data => console.log('on auth failed:', data)}
+                                                          multiselect={true}
+                                                          navHidden={true}
+                                                          authImmediate={false}
+                                                          mimeTypes={['image/png', 'image/jpeg', 'image/jpg']}
+                                                          query={'a query string like .txt or fileName'}
+                                                          viewId={'DOCS'}  onChange={data => console.log('on change:', data)}
+                                                          onAuthFailed={data => console.log('on auth failed:', data)}
+                                                          multiselect={true}
+                                                          navHidden={true}
+                                                          authImmediate={false}
+                                                          viewId={'FOLDERS'}
+                                                          createPicker={ (google, oauthToken) => {
+                                                              const googleViewId = google.picker.ViewId.FOLDERS;
+                                                              const docsView = new google.picker.DocsView(googleViewId)
+                                                                  .setIncludeFolders(true)
+                                                                  .setMimeTypes('application/vnd.google-apps.folder')
+                                                                  .setSelectFolderEnabled(true);
+
+                                                              const picker = new window.google.picker.PickerBuilder()
+                                                                  .addView(docsView)
+                                                                  .setOAuthToken(oauthToken)
+                                                                  // .setDeveloperKey('AIzaSyBJG2E08YMitCRBQSzyuJX6I57MOhfXrRs')
+                                                                  .setCallback(()=>{
+                                                                      console.log('Custom picker is ready!');
+                                                                  });
+
+                                                              picker.build().setVisible(true);
+                                                          }}
+                                            >
+                                                <span>Click</span>
+                                                <div className="google"></div>
+                                            </GooglePicker>
+
                                         </div>
                                     </span>}
 
