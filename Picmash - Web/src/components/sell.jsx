@@ -23,10 +23,11 @@ export default class Sell extends Component {
         this.state = {
             file_select_type: 'local',
 
-            selected_file_type:'',  //photo, video
+            selected_file_type:'',  //image, video
 
             google_selected_file_data:null,
-            google_drive_img_preview :''
+            google_drive_img_preview :'',
+            google_drive_video_preview :''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -62,6 +63,12 @@ export default class Sell extends Component {
 
     fillGoogleDriveImagePreviewer(){
         this.setState({google_drive_img_preview: 'https://drive.google.com/uc?export=view&id='+this.state.google_selected_file_data.id});
+    }
+    fillGoogleDriveVideoPreviewer(){
+        console.log("%%%")
+        console.log(this.state.google_selected_file_data)
+        // google_drive_video_preview
+        this.setState({google_drive_video_preview: 'https://drive.google.com/uc?export=view&id='+this.state.google_selected_file_data.id});
     }
 
 
@@ -192,15 +199,30 @@ export default class Sell extends Component {
                                                                   // .setDeveloperKey('AIzaSyBJG2E08YMitCRBQSzyuJX6I57MOhfXrRs')
                                                                   .setCallback((data)=>{
 
+
+
                                                                       if(data.action === 'picked'){
-                                                                          this.setState({
-                                                                              google_selected_file_data: data.docs[0]
-                                                                          }, () => {
-                                                                              console.log("----------")
-                                                                              console.log(this.state.google_selected_file_data);
-                                                                              console.log("----------")
-                                                                              this.fillGoogleDriveImagePreviewer();
-                                                                          });
+
+                                                                          console.log(data.docs[0].mimeType)
+                                                                          if(data.docs[0].mimeType=== 'image/jpeg'){
+                                                                              this.setState({
+                                                                                  selected_file_type:'image',
+                                                                                  google_selected_file_data: data.docs[0]
+                                                                              }, () => {
+                                                                                  this.fillGoogleDriveImagePreviewer();
+                                                                              });
+                                                                          }else if(data.docs[0].mimeType=== 'video/mp4'){
+                                                                              this.setState({
+                                                                                  selected_file_type:'video',
+                                                                                  google_selected_file_data: data.docs[0]
+                                                                              }, () => {
+                                                                                  this.fillGoogleDriveVideoPreviewer();
+                                                                              });
+                                                                          }else{
+                                                                              alert('Invalid file selected. Please select a photo or video')
+                                                                          }
+
+
                                                                       }
 
                                                                   });
@@ -222,20 +244,27 @@ export default class Sell extends Component {
 
                             <div className="row">
                                 <div className="col-25">
-                                    <label>Picked Image / video</label>
+
+                                    {this.state.google_selected_file_data !== null && this.state.selected_file_type ==='image' &&<label>
+                                        Picked Image
+                                    </label>}
+                                    {this.state.google_selected_file_data !== null && this.state.selected_file_type ==='video' &&<label>
+                                        Picked Video
+                                    </label>}
+
                                 </div>
                                 <div className="col-75">
-                                    {this.state.google_selected_file_data !== null && <div>
+                                    {this.state.google_selected_file_data !== null && this.state.selected_file_type ==='image' &&<div>
                                         <img src={this.state.google_drive_img_preview}
                                             alt="Loading... " width="256" height="144"/>
                                     </div>}
 
+                                    {this.state.google_selected_file_data !== null && this.state.selected_file_type ==='video' &&<div>
+                                        <video width="256px" controls="controls" preload="metadata">
+                                            <source src={this.state.google_drive_video_preview+"#t=0.5"} type="video/mp4"/>
+                                        </video>
+                                    </div>}
 
-
-
-                                    <video width="256px" controls="controls" preload="metadata">
-                                        <source src="https://www.w3schools.com/html/mov_bbb.mp4#t=0.5" type="video/mp4"/>
-                                    </video>
 
 
                                 </div>
