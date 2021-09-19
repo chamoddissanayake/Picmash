@@ -89,7 +89,7 @@ export default class Register extends Component {
 
     validateInputs() {
 
-        if (this.state.reg_email_txt == "" || this.state.reg_username_txt == "" || this.state.reg_password_txt == "") {
+        if (this.state.reg_email_txt === "" || this.state.reg_username_txt === "" || this.state.reg_password_txt === "") {
             alert("Please fill all fields")
             return false
         }

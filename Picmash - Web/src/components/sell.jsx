@@ -21,8 +21,12 @@ export default class Sell extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            file_select_type: 'local'
-            // openPicker : useDrivePicker()
+            file_select_type: 'local',
+
+            selected_file_type:'',  //photo, video
+
+            google_selected_file_data:null,
+            google_drive_img_preview :''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -46,31 +50,20 @@ export default class Sell extends Component {
 
         // console.log(currentUser)
         console.log(currentUser.type)
-        if (currentUser == 'general') {
+        if (currentUser === 'general') {
         // google login with permission
 
-        }else if (currentUser == 'google') {
+        }else if (currentUser === 'google') {
         // get permission
 
         }
 
     }
 
+    fillGoogleDriveImagePreviewer(){
+        this.setState({google_drive_img_preview: 'https://drive.google.com/uc?export=view&id='+this.state.google_selected_file_data.id});
+    }
 
-    // handleOpenPicker(){
-    //
-    //     openPicker({
-    //         clientId: "xxxxxxxxxxxxxxxxx",
-    //         developerKey: "xxxxxxxxxxxx",
-    //         viewId: "DOCS",
-    //         // token: token, // pass oauth token in case you already have one
-    //         showUploadView: true,
-    //         showUploadFolders: true,
-    //         supportDrives: true,
-    //         multiselect: true,
-    //         // customViews: customViewsArray, // custom view
-    //     })
-    // }
 
     render() {
         return (
@@ -198,8 +191,18 @@ export default class Sell extends Component {
                                                                   .setOAuthToken(oauthToken)
                                                                   // .setDeveloperKey('AIzaSyBJG2E08YMitCRBQSzyuJX6I57MOhfXrRs')
                                                                   .setCallback((data)=>{
-                                                                      console.log(data)
-                                                                      console.log('Custom picker is ready!');
+
+                                                                      if(data.action === 'picked'){
+                                                                          this.setState({
+                                                                              google_selected_file_data: data.docs[0]
+                                                                          }, () => {
+                                                                              console.log("----------")
+                                                                              console.log(this.state.google_selected_file_data);
+                                                                              console.log("----------")
+                                                                              this.fillGoogleDriveImagePreviewer();
+                                                                          });
+                                                                      }
+
                                                                   });
 
                                                               picker.build().setVisible(true);
@@ -213,6 +216,28 @@ export default class Sell extends Component {
                                     </span>}
 
                                     </div>
+                                </div>
+                            </div>
+
+
+                            <div className="row">
+                                <div className="col-25">
+                                    <label>Picked Image / video</label>
+                                </div>
+                                <div className="col-75">
+                                    {this.state.google_selected_file_data !== null && <div>
+                                        <img src={this.state.google_drive_img_preview}
+                                            alt="Loading... " width="256" height="144"/>
+                                    </div>}
+
+
+
+
+                                    <video width="256px" controls="controls" preload="metadata">
+                                        <source src="https://www.w3schools.com/html/mov_bbb.mp4#t=0.5" type="video/mp4"/>
+                                    </video>
+
+
                                 </div>
 
 

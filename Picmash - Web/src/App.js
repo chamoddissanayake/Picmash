@@ -35,7 +35,7 @@ export default class App extends Component {
 
     componentDidMount() {
         const currentUser = AuthService.getCurrentUser();
-        if (currentUser == null) {
+        if (currentUser === null) {
             this.setState({is_loggedIn: false});
         } else {
             this.setState({
@@ -87,48 +87,48 @@ export default class App extends Component {
 
                             </ul>
 
-                            {this.state.is_loggedIn == false && <div>
+                            {this.state.is_loggedIn === false && <div>
                                 <a href="/login">
                                     <button className="btn btn-outline-primary" type="submit">Login</button>
                                 </a>
                             </div>}
 
                             <div style={{width: "10px"}}></div>
-                            {this.state.is_loggedIn == false && <div>
+                            {this.state.is_loggedIn === false && <div>
                                 <a href="/register">
                                     <button className="btn btn-outline-warning" type="submit">Register</button>
                                 </a>
                             </div>}
 
-                            {this.state.is_loggedIn == true && (this.state.logged_in_user_type == 'general' ||
-                                this.state.logged_in_user_type == 'google') &&
+                            {this.state.is_loggedIn === true && (this.state.logged_in_user_type === 'general' ||
+                                this.state.logged_in_user_type === 'google') &&
                             <div style={{width: "10px"}}></div>}
 
 
-                            {this.state.is_loggedIn == true && (this.state.logged_in_user_type == 'google') && <div>
+                            {this.state.is_loggedIn === true && (this.state.logged_in_user_type === 'google') && <div>
                                 <img src={this.state.logged_in_user.profileObj.imageUrl} alt="User" width="50" height="50"/>
                             </div>}
 
-                            {this.state.is_loggedIn == true && (this.state.logged_in_user_type == 'google') && <div>
+                            {this.state.is_loggedIn === true && (this.state.logged_in_user_type === 'google') && <div>
                                 <div style={{width: "10px"}}></div>
                             </div>}
 
-                            {this.state.is_loggedIn == true && (this.state.logged_in_user_type == 'google') && <div>
+                            {this.state.is_loggedIn === true && (this.state.logged_in_user_type === 'google') && <div>
                                 <button className="btn btn-light"
                                         type="submit">Hi, {this.state.logged_in_user.profileObj.givenName}</button>
                             </div>}
 
-                            {this.state.is_loggedIn == true && (this.state.logged_in_user_type == 'general') && <div>
+                            {this.state.is_loggedIn === true && (this.state.logged_in_user_type === 'general') && <div>
                                 <button className="btn btn-light"
                                         type="submit">Hi, {this.state.logged_in_user.username}</button>
                             </div>}
 
 
-                            {this.state.is_loggedIn == true && this.state.logged_in_user_type == 'general' &&
+                            {this.state.is_loggedIn === true && this.state.logged_in_user_type === 'general' &&
                             <div style={{width: "10px"}}></div>}
 
-                            {this.state.is_loggedIn == true && (this.state.logged_in_user_type == 'general' ||
-                                this.state.logged_in_user_type == 'google') && <div>
+                            {this.state.is_loggedIn === true && (this.state.logged_in_user_type === 'general' ||
+                                this.state.logged_in_user_type === 'google') && <div>
                                 <a href="/">
                                     <button className="btn btn btn-link" type="submit"
                                             onClick={() => this.handleLogoutPressed()}>Logout

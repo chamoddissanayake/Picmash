@@ -13,7 +13,7 @@ export default class HomeItems extends Component {
 
     SaveItemInDrive() {
         console.log("Save item in drive")
-
+        // C:\\Users\\User\\Desktop\\2382371.jpg
 
 
     }

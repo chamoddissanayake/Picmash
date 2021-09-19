@@ -57,7 +57,7 @@ export default class Login extends Component {
                     error.message ||
                     error.toString();
 
-                if (error.response.status == 401) {
+                if (error.response.status === 401) {
                     alert("username or password incorrect")
                 }
 
@@ -73,7 +73,7 @@ export default class Login extends Component {
 
     validateInputs() {
         console.log(1)
-        if (this.state.log_username_txt == "" || this.state.log_password_txt == "") {
+        if (this.state.log_username_txt === "" || this.state.log_password_txt === "") {
             alert("Please fill all fields")
             console.log(2)
             return false
@@ -105,7 +105,7 @@ export default class Login extends Component {
     }
     responseGoogleFailure(response) {
         console.log(response.error);
-        if (response.error != 'popup_closed_by_user'){
+        if (response.error !== 'popup_closed_by_user'){
             alert("Something went wrong")
         }
         window.location.href = "/login";
