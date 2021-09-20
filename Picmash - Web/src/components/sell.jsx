@@ -8,6 +8,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import AuthService from "../services/auth.service";
+import SellService from "../services/sell.service";
 
 import GooglePicker from 'react-google-picker';
 
@@ -19,44 +20,41 @@ export default class Sell extends Component {
         super(props);
         this.state = {
 
-            selected_file_type:'',  //image, video
+            selected_file_type: '',  //image, video
 
-            google_selected_file_data:null,
-            google_drive_img_preview :'',
-            google_drive_video_preview :''
+            google_selected_file_data: null,
+            google_drive_img_preview: '',
+            google_drive_video_preview: ''
         };
-
+        this.submitPressed = this.submitPressed.bind(this);
     }
 
     componentDidMount() {
     }
 
 
-
-    chooseGoogleFileBtnPressed() {
-
-        const currentUser = AuthService.getCurrentUser();
-
-        // console.log(currentUser)
-        console.log(currentUser.type)
-        if (currentUser === 'general') {
-        // google login with permission
-
-        }else if (currentUser === 'google') {
-        // get permission
-
-        }
-
+    fillGoogleDriveImagePreviewer() {
+        this.setState({google_drive_img_preview: 'https://drive.google.com/uc?export=view&id=' + this.state.google_selected_file_data.id});
     }
 
-    fillGoogleDriveImagePreviewer(){
-        this.setState({google_drive_img_preview: 'https://drive.google.com/uc?export=view&id='+this.state.google_selected_file_data.id});
-    }
-    fillGoogleDriveVideoPreviewer(){
+    fillGoogleDriveVideoPreviewer() {
         console.log("%%%")
         console.log(this.state.google_selected_file_data)
         // google_drive_video_preview
-        this.setState({google_drive_video_preview: 'https://drive.google.com/uc?export=view&id='+this.state.google_selected_file_data.id});
+        this.setState({google_drive_video_preview: 'https://drive.google.com/uc?export=view&id=' + this.state.google_selected_file_data.id});
+    }
+
+    submitPressed() {
+        console.log("-----")
+
+        const currentUser = SellService.sellSubmit(
+            this.state.selected_file_type,
+            this.state.google_selected_file_data,
+            this.state.google_drive_img_preview,
+            this.state.google_drive_video_preview
+            );
+
+        console.log("-----")
     }
 
 
@@ -78,7 +76,7 @@ export default class Sell extends Component {
 				</span>
                     </div>
                     <div className="form-container">
-                        <form>
+                        <div>
                             <div className="row">
                                 <div className="col-25">
                                     <label>Title</label>
@@ -130,66 +128,66 @@ export default class Sell extends Component {
                                         {/*<input onClick={this.chooseGoogleFileBtnPressed} type="button" value="Choose image from Google Drive"/>*/}
                                         {/*<button onClick={this.handleOpenPicker}>Open Picker</button>*/}
 
-                                        <GooglePicker clientId={'801360513499-u7sc20pvp4nkkigtgvnnaajp4hcq4ate.apps.googleusercontent.com'}
-                                                      developerKey={'AIzaSyBJG2E08YMitCRBQSzyuJX6I57MOhfXrRs'}
-                                                      scope={['https://www.googleapis.com/auth/drive.readonly']}
-                                                      onChange={data => console.log('on change:', data)}
-                                                      onAuthFailed={data => console.log('on auth failed:', data)}
-                                                      multiselect={true}
-                                                      navHidden={true}
-                                                      authImmediate={false}
+                                        <GooglePicker
+                                            clientId={'801360513499-u7sc20pvp4nkkigtgvnnaajp4hcq4ate.apps.googleusercontent.com'}
+                                            developerKey={'AIzaSyBJG2E08YMitCRBQSzyuJX6I57MOhfXrRs'}
+                                            scope={['https://www.googleapis.com/auth/drive.readonly']}
+                                            onChange={data => console.log('on change:', data)}
+                                            onAuthFailed={data => console.log('on auth failed:', data)}
+                                            multiselect={true}
+                                            navHidden={true}
+                                            authImmediate={false}
                                             // mimeTypes={['image/png', 'image/jpeg', 'image/jpg']}
-                                                      query={'a query string like .txt or fileName'}
-                                                      viewId={'DOCS'}  onChange={data => console.log('on change:', data)}
-                                                      onAuthFailed={data => console.log('on auth failed:', data)}
-                                                      multiselect={true}
-                                                      navHidden={true}
-                                                      authImmediate={false}
+                                            query={'a query string like .txt or fileName'}
+                                            viewId={'DOCS'} onChange={data => console.log('on change:', data)}
+                                            onAuthFailed={data => console.log('on auth failed:', data)}
+                                            multiselect={true}
+                                            navHidden={true}
+                                            authImmediate={false}
                                             // viewId={'FOLDERS'}
-                                                      createPicker={ (google, oauthToken) => {
-                                                          const googleViewId = google.picker.ViewId.FOLDERS;
-                                                          const docsView = new google.picker.DocsView(googleViewId)
-                                                              .setIncludeFolders(true)
-                                                              // .setMimeTypes('application/vnd.google-apps.folder')
-                                                              .setMimeTypes('application/vnd.google-apps.file')
-                                                              .setSelectFolderEnabled(true);
+                                            createPicker={(google, oauthToken) => {
+                                                const googleViewId = google.picker.ViewId.FOLDERS;
+                                                const docsView = new google.picker.DocsView(googleViewId)
+                                                    .setIncludeFolders(true)
+                                                    // .setMimeTypes('application/vnd.google-apps.folder')
+                                                    .setMimeTypes('application/vnd.google-apps.file')
+                                                    .setSelectFolderEnabled(true);
 
-                                                          const picker = new window.google.picker.PickerBuilder()
-                                                              .addView(docsView)
-                                                              .setOAuthToken(oauthToken)
-                                                              // .setDeveloperKey('AIzaSyBJG2E08YMitCRBQSzyuJX6I57MOhfXrRs')
-                                                              .setCallback((data)=>{
-
-
-
-                                                                  if(data.action === 'picked'){
-
-                                                                      console.log(data.docs[0].mimeType)
-                                                                      if(data.docs[0].mimeType=== 'image/jpeg'){
-                                                                          this.setState({
-                                                                              selected_file_type:'image',
-                                                                              google_selected_file_data: data.docs[0]
-                                                                          }, () => {
-                                                                              this.fillGoogleDriveImagePreviewer();
-                                                                          });
-                                                                      }else if(data.docs[0].mimeType=== 'video/mp4'){
-                                                                          this.setState({
-                                                                              selected_file_type:'video',
-                                                                              google_selected_file_data: data.docs[0]
-                                                                          }, () => {
-                                                                              this.fillGoogleDriveVideoPreviewer();
-                                                                          });
-                                                                      }else{
-                                                                          alert('Invalid file selected. Please select a photo or video')
-                                                                      }
+                                                const picker = new window.google.picker.PickerBuilder()
+                                                    .addView(docsView)
+                                                    .setOAuthToken(oauthToken)
+                                                    // .setDeveloperKey('AIzaSyBJG2E08YMitCRBQSzyuJX6I57MOhfXrRs')
+                                                    .setCallback((data) => {
 
 
-                                                                  }
+                                                        if (data.action === 'picked') {
 
-                                                              });
+                                                            console.log(data.docs[0].mimeType)
+                                                            if (data.docs[0].mimeType === 'image/jpeg') {
+                                                                this.setState({
+                                                                    selected_file_type: 'image',
+                                                                    google_selected_file_data: data.docs[0]
+                                                                }, () => {
+                                                                    this.fillGoogleDriveImagePreviewer();
+                                                                });
+                                                            } else if (data.docs[0].mimeType === 'video/mp4') {
+                                                                this.setState({
+                                                                    selected_file_type: 'video',
+                                                                    google_selected_file_data: data.docs[0]
+                                                                }, () => {
+                                                                    this.fillGoogleDriveVideoPreviewer();
+                                                                });
+                                                            } else {
+                                                                alert('Invalid file selected. Please select a photo or video')
+                                                            }
 
-                                                          picker.build().setVisible(true);
-                                                      }}
+
+                                                        }
+
+                                                    });
+
+                                                picker.build().setVisible(true);
+                                            }}
                                         >
                                             <span>Click here to choose file from google drive</span>
                                             <div className="google"></div>
@@ -203,26 +201,30 @@ export default class Sell extends Component {
                             <div className="row">
                                 <div className="col-25">
 
-                                    {this.state.google_selected_file_data !== null && this.state.selected_file_type ==='image' &&<label>
+                                    {this.state.google_selected_file_data !== null && this.state.selected_file_type === 'image' &&
+                                    <label>
                                         Picked Image
                                     </label>}
-                                    {this.state.google_selected_file_data !== null && this.state.selected_file_type ==='video' &&<label>
+                                    {this.state.google_selected_file_data !== null && this.state.selected_file_type === 'video' &&
+                                    <label>
                                         Picked Video
                                     </label>}
 
                                 </div>
                                 <div className="col-75">
-                                    {this.state.google_selected_file_data !== null && this.state.selected_file_type ==='image' &&<div>
+                                    {this.state.google_selected_file_data !== null && this.state.selected_file_type === 'image' &&
+                                    <div>
                                         <img src={this.state.google_drive_img_preview}
-                                            alt="Loading... " width="256" height="144"/>
+                                             alt="Loading... " width="256" height="144"/>
                                     </div>}
 
-                                    {this.state.google_selected_file_data !== null && this.state.selected_file_type ==='video' &&<div>
+                                    {this.state.google_selected_file_data !== null && this.state.selected_file_type === 'video' &&
+                                    <div>
                                         <video width="256px" controls="controls" preload="metadata">
-                                            <source src={this.state.google_drive_video_preview+"#t=0.5"} type="video/mp4"/>
+                                            <source src={this.state.google_drive_video_preview + "#t=0.5"}
+                                                    type="video/mp4"/>
                                         </video>
                                     </div>}
-
 
 
                                 </div>
@@ -232,9 +234,11 @@ export default class Sell extends Component {
 
 
                             <div className="row">
-                                <input type="submit" value="Submit"/>
+                                {/*<input type="submit" value="Submit"/>*/}
+                                <button type="button" className="btn btn-success" onClick={this.submitPressed}>Submit
+                                </button>
                             </div>
-                        </form>
+                        </div>
                     </div>
 
 
