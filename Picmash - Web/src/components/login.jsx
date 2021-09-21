@@ -188,6 +188,7 @@ export default class Login extends Component {
 
                                     </div>
                                     <div>
+                                        {/*TODO:*/}
                                         {/*<img src={google_btn} className="social-btn-common" alt="Sign with Google"/>*/}
                                         <GoogleLogin
                                             clientId="801360513499-u7sc20pvp4nkkigtgvnnaajp4hcq4ate.apps.googleusercontent.com"

@@ -11,6 +11,7 @@ import AuthService from "../services/auth.service";
 import SellService from "../services/sell.service";
 
 import GooglePicker from 'react-google-picker';
+import axios from "axios";
 
 
 export default class Sell extends Component {
@@ -24,7 +25,8 @@ export default class Sell extends Component {
 
             google_selected_file_data: null,
             google_drive_img_preview: '',
-            google_drive_video_preview: ''
+            google_drive_video_preview: '',
+            selected_file_content:null
         };
         this.submitPressed = this.submitPressed.bind(this);
     }
@@ -47,16 +49,89 @@ export default class Sell extends Component {
     submitPressed() {
         console.log("-----")
 
-        const currentUser = SellService.sellSubmit(
-            this.state.selected_file_type,
-            this.state.google_selected_file_data,
-            this.state.google_drive_img_preview,
-            this.state.google_drive_video_preview
-            );
+        const currentUser = AuthService.getCurrentUser();
 
-        console.log("-----")
+        console.log(this.state.google_drive_img_preview);
+        console.log(this.state.google_selected_file_data);
+        console.log(currentUser);
+
+        // const submitted = SellService.sellSubmit(
+        //     this.state.selected_file_type,
+        //     this.state.google_selected_file_data,
+        //     this.state.google_drive_img_preview,
+        //     this.state.google_drive_video_preview
+        //     );
+        // console.log("*****")
+        // this.fetchImageContent();
+        // console.log("-----")
+        // this.downloadImageFile()
+        this.sendNetworkCall();
     }
 
+    sendNetworkCall(){
+        var response  = axios
+            .post("http://localhost:8001/api/sell/image", {})
+            .then(response => {
+                // if (response.data.accessToken) {
+                //     localStorage.setItem("user", JSON.stringify(response.data));
+                //     localStorage.setItem("type", "general");
+
+                // }
+                console.log("********************")
+                console.log("response received")
+                console.log(response)
+                console.log("********************")
+
+                return response.data;
+            });
+    }
+
+    fetchImageContent(){
+
+        // fetch("https://i.picsum.photos/id/794/1280/720.jpg?hmac=MWQL7lPs6VIfRYN9wYYq-dvXitPBPo-ZKzM_xfeR_sM",
+        fetch(this.state.google_drive_img_preview,
+            {
+                method: "POST",
+                headers: { "Content-Type": "image/jpeg"},
+                body:this.state.selected_file_content
+            }).then(response => response.blob()).then(response =>{
+                console.log(this.state.selected_file_content)
+        })
+    }
+
+    // downloadImageFile() {
+    //     fetch('https://i.picsum.photos/id/723/1280/720.jpg?hmac=Mp0rVArPWiOWfMJyumAZEILRVbrloHZd0W1Sib1LXx8',
+    //         {
+    //             method: 'GET',
+    //             headers: {
+    //                 'Content-Type': 'image/jpeg',
+    //             },
+    //         })
+    //         .then((response) => response.blob())
+    //         .then((blob) => {
+    //             // Create blob link to download
+    //             const url = window.URL.createObjectURL(
+    //                 new Blob([blob]),
+    //             );
+    //             console.log(url)
+    //             const link = document.createElement('a');
+    //             link.href = url;
+    //             link.setAttribute(
+    //                 'download',
+    //                 `FileName.jpg`,
+    //             );
+    //
+    //             console.log(link)
+    //             // Append to html link element page
+    //             document.body.appendChild(link);
+    //
+    //             // Start download
+    //             link.click();
+    //
+    //             // Clean up and remove the link
+    //             link.parentNode.removeChild(link);
+    //         });
+    // }
 
     render() {
         return (
@@ -128,6 +203,7 @@ export default class Sell extends Component {
                                         {/*<input onClick={this.chooseGoogleFileBtnPressed} type="button" value="Choose image from Google Drive"/>*/}
                                         {/*<button onClick={this.handleOpenPicker}>Open Picker</button>*/}
 
+                                        {/*TODO:*/}
                                         <GooglePicker
                                             clientId={'801360513499-u7sc20pvp4nkkigtgvnnaajp4hcq4ate.apps.googleusercontent.com'}
                                             developerKey={'AIzaSyBJG2E08YMitCRBQSzyuJX6I57MOhfXrRs'}
