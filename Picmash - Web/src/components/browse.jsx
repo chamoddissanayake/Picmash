@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {IMAGE_DATA} from '../data/image_data'
 import {VIDEO_DATA} from '../data/video_data'
+import axios from "axios";
 
 
 export default class Browse extends Component {
@@ -10,11 +11,19 @@ export default class Browse extends Component {
     }
 
     componentDidMount() {
-        console.log("%%")
-        console.log(IMAGE_DATA)
-        console.log("**")
-        console.log(VIDEO_DATA)
-        console.log("--")
+
+    }
+
+    saveImageInDriveClicked(imagelink){
+        console.log(imagelink)
+        var status = axios
+            .post("http://localhost:8001/api/save/image", {})
+            .then(response => {
+                console.log(response)
+                return response;
+            });
+        //
+
     }
 
     render() {
@@ -43,8 +52,9 @@ export default class Browse extends Component {
                                             <div className="card-bottom-div">
                                                 <p className="price-font"
                                                    style={{"fontSize": "20px"}}>$ {image.price}</p>
-                                                <button type="button" className="btn btn-primary">Try for Free Now
-                                                </button>
+                                                <div type="button" className="btn btn-primary"
+                                                     onClick={() => this.saveImageInDriveClicked(image.link)}>Save this image
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -81,221 +91,13 @@ export default class Browse extends Component {
                                             <div className="card-bottom-div">
                                                 <p className="price-font"
                                                    style={{"fontSize": "20px"}}>$ {video.price}</p>
-                                                <button type="button" className="btn btn-primary">Try for Free Now
+                                                <button type="button" className="btn btn-primary">Save this video
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             ))}
-
-                            {/*<div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">*/}
-                            {/*    <a href="">*/}
-                            {/*        <div className="card-flyer">*/}
-                            {/*            <div className="text-box">*/}
-                            {/*                <div className="image-box">*/}
-                            {/*                    <img*/}
-                            {/*                        src="https://cdn.pixabay.com/photo/2018/03/30/15/11/deer-3275594_960_720.jpg"*/}
-                            {/*                        alt=""/>*/}
-                            {/*                </div>*/}
-                            {/*                <div className="text-container">*/}
-                            {/*                    <h6>Title 01AA</h6>*/}
-                            {/*                    <p className="justify-card">Lorem Ipsum is simply dummy text of the*/}
-                            {/*                        printing and typesetting*/}
-                            {/*                        industry. Lorem Ipsum has been the industry's standard dummy text*/}
-                            {/*                        ever since the 1500s.</p>*/}
-                            {/*                </div>*/}
-                            {/*                <div className="card-bottom-div">*/}
-                            {/*                    <p className="price-font" style={{"fontSize": "20px"}}>$ 10.00</p>*/}
-                            {/*                    <button type="button" className="btn btn-primary">Try for Free Now*/}
-                            {/*                    </button>*/}
-                            {/*                </div>*/}
-                            {/*            </div>*/}
-                            {/*        </div>*/}
-                            {/*    </a>*/}
-                            {/*</div>*/}
-
-                            {/*<div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">*/}
-                            {/*    <a href="">*/}
-                            {/*        <div className="card-flyer">*/}
-                            {/*            <div className="text-box">*/}
-                            {/*                <div className="image-box">*/}
-                            {/*                    <img*/}
-                            {/*                        src="https://cdn.pixabay.com/photo/2018/03/30/15/11/deer-3275594_960_720.jpg"*/}
-                            {/*                        alt=""/>*/}
-                            {/*                </div>*/}
-                            {/*                <div className="text-container">*/}
-                            {/*                    <h6>Title 01AA</h6>*/}
-                            {/*                    <p className="justify-card">Lorem Ipsum is simply dummy text of the*/}
-                            {/*                        printing and typesetting*/}
-                            {/*                        industry. Lorem Ipsum has been the industry's standard dummy text*/}
-                            {/*                        ever since the 1500s.</p>*/}
-                            {/*                </div>*/}
-                            {/*                <div className="card-bottom-div">*/}
-                            {/*                    <p className="price-font" style={{"fontSize": "20px"}}>$ 10.00</p>*/}
-                            {/*                    <button type="button" className="btn btn-primary">Try for Free Now*/}
-                            {/*                    </button>*/}
-                            {/*                </div>*/}
-                            {/*            </div>*/}
-                            {/*        </div>*/}
-                            {/*    </a>*/}
-                            {/*</div>*/}
-
-                            {/*<div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">*/}
-                            {/*    <a href="">*/}
-                            {/*        <div className="card-flyer">*/}
-                            {/*            <div className="text-box">*/}
-                            {/*                <div className="image-box">*/}
-                            {/*                    <img*/}
-                            {/*                        src="https://cdn.pixabay.com/photo/2018/03/30/15/11/deer-3275594_960_720.jpg"*/}
-                            {/*                        alt=""/>*/}
-                            {/*                </div>*/}
-                            {/*                <div className="text-container">*/}
-                            {/*                    <h6>Title 01AA</h6>*/}
-                            {/*                    <p className="justify-card">Lorem Ipsum is simply dummy text of the*/}
-                            {/*                        printing and typesetting*/}
-                            {/*                        industry. Lorem Ipsum has been the industry's standard dummy text*/}
-                            {/*                        ever since the 1500s.</p>*/}
-                            {/*                </div>*/}
-                            {/*                <div className="card-bottom-div">*/}
-                            {/*                    <p className="price-font" style={{"fontSize": "20px"}}>$ 10.00</p>*/}
-                            {/*                    <button type="button" className="btn btn-primary">Try for Free Now*/}
-                            {/*                    </button>*/}
-                            {/*                </div>*/}
-                            {/*            </div>*/}
-                            {/*        </div>*/}
-                            {/*    </a>*/}
-                            {/*</div>*/}
-
-                            {/*<div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">*/}
-                            {/*    <a href="">*/}
-                            {/*        <div className="card-flyer">*/}
-                            {/*            <div className="text-box">*/}
-                            {/*                <div className="image-box">*/}
-                            {/*                    <img*/}
-                            {/*                        src="https://cdn.pixabay.com/photo/2018/03/30/15/11/deer-3275594_960_720.jpg"*/}
-                            {/*                        alt=""/>*/}
-                            {/*                </div>*/}
-                            {/*                <div className="text-container">*/}
-                            {/*                    <h6>Title 01AA</h6>*/}
-                            {/*                    <p className="justify-card">Lorem Ipsum is simply dummy text of the*/}
-                            {/*                        printing and typesetting*/}
-                            {/*                        industry. Lorem Ipsum has been the industry's standard dummy text*/}
-                            {/*                        ever since the 1500s.</p>*/}
-                            {/*                </div>*/}
-                            {/*                <div className="card-bottom-div">*/}
-                            {/*                    <p className="price-font" style={{"fontSize": "20px"}}>$ 10.00</p>*/}
-                            {/*                    <button type="button" className="btn btn-primary">Try for Free Now*/}
-                            {/*                    </button>*/}
-                            {/*                </div>*/}
-                            {/*            </div>*/}
-                            {/*        </div>*/}
-                            {/*    </a>*/}
-                            {/*</div>*/}
-
-                            {/*<div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">*/}
-                            {/*    <a href="">*/}
-                            {/*        <div className="card-flyer">*/}
-                            {/*            <div className="text-box">*/}
-                            {/*                <div className="image-box">*/}
-                            {/*                    <img*/}
-                            {/*                        src="https://cdn.pixabay.com/photo/2018/03/30/15/11/deer-3275594_960_720.jpg"*/}
-                            {/*                        alt=""/>*/}
-                            {/*                </div>*/}
-                            {/*                <div className="text-container">*/}
-                            {/*                    <h6>Title 01AA</h6>*/}
-                            {/*                    <p className="justify-card">Lorem Ipsum is simply dummy text of the*/}
-                            {/*                        printing and typesetting*/}
-                            {/*                        industry. Lorem Ipsum has been the industry's standard dummy text*/}
-                            {/*                        ever since the 1500s.</p>*/}
-                            {/*                </div>*/}
-                            {/*                <div className="card-bottom-div">*/}
-                            {/*                    <p className="price-font" style={{"fontSize": "20px"}}>$ 10.00</p>*/}
-                            {/*                    <button type="button" className="btn btn-primary">Try for Free Now*/}
-                            {/*                    </button>*/}
-                            {/*                </div>*/}
-                            {/*            </div>*/}
-                            {/*        </div>*/}
-                            {/*    </a>*/}
-                            {/*</div>*/}
-
-                            {/*<div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">*/}
-                            {/*    <a href="">*/}
-                            {/*        <div className="card-flyer">*/}
-                            {/*            <div className="text-box">*/}
-                            {/*                <div className="image-box">*/}
-                            {/*                    <img*/}
-                            {/*                        src="https://cdn.pixabay.com/photo/2018/03/30/15/11/deer-3275594_960_720.jpg"*/}
-                            {/*                        alt=""/>*/}
-                            {/*                </div>*/}
-                            {/*                <div className="text-container">*/}
-                            {/*                    <h6>Title 01AA</h6>*/}
-                            {/*                    <p className="justify-card">Lorem Ipsum is simply dummy text of the*/}
-                            {/*                        printing and typesetting*/}
-                            {/*                        industry. Lorem Ipsum has been the industry's standard dummy text*/}
-                            {/*                        ever since the 1500s.</p>*/}
-                            {/*                </div>*/}
-                            {/*                <div className="card-bottom-div">*/}
-                            {/*                    <p className="price-font" style={{"fontSize": "20px"}}>$ 10.00</p>*/}
-                            {/*                    <button type="button" className="btn btn-primary">Try for Free Now*/}
-                            {/*                    </button>*/}
-                            {/*                </div>*/}
-                            {/*            </div>*/}
-                            {/*        </div>*/}
-                            {/*    </a>*/}
-                            {/*</div>*/}
-
-                            {/*<div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">*/}
-                            {/*    <a href="">*/}
-                            {/*        <div className="card-flyer">*/}
-                            {/*            <div className="text-box">*/}
-                            {/*                <div className="image-box">*/}
-                            {/*                    <img*/}
-                            {/*                        src="https://cdn.pixabay.com/photo/2018/03/30/15/11/deer-3275594_960_720.jpg"*/}
-                            {/*                        alt=""/>*/}
-                            {/*                </div>*/}
-                            {/*                <div className="text-container">*/}
-                            {/*                    <h6>Title 01AA</h6>*/}
-                            {/*                    <p className="justify-card">Lorem Ipsum is simply dummy text of the*/}
-                            {/*                        printing and typesetting*/}
-                            {/*                        industry. Lorem Ipsum has been the industry's standard dummy text*/}
-                            {/*                        ever since the 1500s.</p>*/}
-                            {/*                </div>*/}
-                            {/*                <div className="card-bottom-div">*/}
-                            {/*                    <p className="price-font" style={{"fontSize": "20px"}}>$ 10.00</p>*/}
-                            {/*                    <button type="button" className="btn btn-primary">Try for Free Now*/}
-                            {/*                    </button>*/}
-                            {/*                </div>*/}
-                            {/*            </div>*/}
-                            {/*        </div>*/}
-                            {/*    </a>*/}
-                            {/*</div>*/}
-
-                            {/*<div className="col-xs-12 col-sm-6 col-md-3 col-lg-3">*/}
-                            {/*    <a href="">*/}
-                            {/*        <div className="card-flyer">*/}
-                            {/*            <div className="text-box">*/}
-                            {/*                <div className="image-box">*/}
-                            {/*                    <img*/}
-                            {/*                        src="https://cdn.pixabay.com/photo/2018/03/30/15/11/deer-3275594_960_720.jpg"*/}
-                            {/*                        alt=""/>*/}
-                            {/*                </div>*/}
-                            {/*                <div className="text-container">*/}
-                            {/*                    <h6>Title 01AA</h6>*/}
-                            {/*                    <p className="justify-card">Lorem Ipsum is simply dummy text of the*/}
-                            {/*                        printing and typesetting*/}
-                            {/*                        industry. Lorem Ipsum has been the industry's standard dummy text*/}
-                            {/*                        ever since the 1500s.</p>*/}
-                            {/*                </div>*/}
-                            {/*                <div className="card-bottom-div">*/}
-                            {/*                    <p className="price-font" style={{"fontSize": "20px"}}>$ 10.00</p>*/}
-                            {/*                    <button type="button" className="btn btn-primary">Try for Free Now*/}
-                            {/*                    </button>*/}
-                            {/*                </div>*/}
-                            {/*            </div>*/}
-                            {/*        </div>*/}
-                            {/*    </a>*/}
-                            {/*</div>*/}
 
                         </div>
                     </div>
