@@ -13,9 +13,11 @@ export default class Browse extends Component {
         this.state = {
             name: '',
             googleAuth: '',
-            body: ''
+            body: '',
+            isSigned:false
         };
         this.fileUpload = this.fileUpload.bind(this);
+        this.aaa = this.aaa.bind(this);
     }
 
     componentDidMount() {
@@ -48,174 +50,118 @@ export default class Browse extends Component {
     }
 
     signInFunction =()=>{
-        console.log(this.state.googleAuth)
-        this.state.googleAuth.signIn();
-        console.log(this.state.googleAuth)
-        this.updateSigninStatus()
+        // console.log(this.state.googleAuth)
+        this.state.googleAuth.signIn().then(a=>{
+            console.log("successfully signed in")
+            this.setSigninStatus();
+        });
+        // console.log(this.state.googleAuth)
+        // this.updateSigninStatus()
+
     }
 
     signOutFunction =()=>{
-        this.state.googleAuth.signOut();
-        this.updateSigninStatus()
+        // this.state.googleAuth.signOut();
+        // this.setSigninStatus();
+
+        this.state.googleAuth.signOut().then(a=>{
+            console.log("successfully signed out")
+            this.setSigninStatus();
+        });
+
+        // this.updateSigninStatus()
     }
 
-    updateSigninStatus = ()=> {
-        // this.setSigninStatus();
-    }
+    // updateSigninStatus = ()=> {
+    //      this.setSigninStatus();
+    // }
 
 
     setSigninStatus= async ()=>{
-        console.log(this.state.googleAuth.currentUser.get())
+        // console.log(this.state.googleAuth.currentUser.get())
         var user = this.state.googleAuth.currentUser.get();
-        console.log(user)
-        if (user.wc == null){
-            this.setState({
-                name: ''
-            });
-        }
-        else{
 
+        // if (user.dt.uU == null || user.dt.uU==''){
+        if (user.$b == null){
+            console.log("111")
+            this.setState({
+                name: '',
+                isSigned:false
+            });
+        }else{
+            console.log("222")
+            this.setState({
+                name: 'testuser',
+                isSigned:true
+            });
         }
     }
 
-    fileUpload(){
+    fileUpload(image_location){
+
+        if (this.state.googleAuth.isSignedIn.Xd == false){
+            alert("Please signed in")
+        }else{
+            var request22 = new XMLHttpRequest();
+            request22.open('GET', image_location, true);
+            request22.responseType = 'blob';
+            request22.onload = function() {
+                var fileData = request22.response;
 
 
-        var image_location = 'https://oauthssdproject.s3.ap-south-1.amazonaws.com/images/1.jpg';
+                const boundary = '-------314159265358979323846';
+                const delimiter = "\r\n--" + boundary + "\r\n";
+                const close_delim = "\r\n--" + boundary + "--";
 
-        var request22 = new XMLHttpRequest();
-        request22.open('GET', image_location, true);
-        request22.responseType = 'blob';
-        request22.onload = function() {
-            var fileData = request22.response;
+                var reader = new FileReader();
+                reader.readAsDataURL(fileData);
+                reader.onload =  function(e){
+                    var contentType = fileData.type || 'application/octet-stream';
 
+                    var metadata = {
+                        'name': Date.now(),
+                        'mimeType': contentType
+                    };
+                    var data = reader.result;
 
-            const boundary = '-------314159265358979323846';
-            const delimiter = "\r\n--" + boundary + "\r\n";
-            const close_delim = "\r\n--" + boundary + "--";
+                    var multipartRequestBody =
+                        delimiter +  'Content-Type: application/json\r\n\r\n' +
+                        JSON.stringify(metadata) +
+                        delimiter +
+                        'Content-Type: ' + contentType + '\r\n';
 
-
-
-            var reader = new FileReader();
-            reader.readAsDataURL(fileData);
-            reader.onload =  function(e){
-                var contentType = fileData.type || 'application/octet-stream';
-
-                console.log("%%%%%%%%")
-
-                var epoch = Date.now();
-
-                var metadata = {
-                    'name': epoch,
-                    'mimeType': contentType
-                };
-                var data = reader.result;
-
-                var multipartRequestBody =
-                    delimiter +  'Content-Type: application/json\r\n\r\n' +
-                    JSON.stringify(metadata) +
-                    delimiter +
-                    'Content-Type: ' + contentType + '\r\n';
-
-                //Transfer images as base64 string.
-                if (contentType.indexOf('image/') === 0) {
-                    var pos = data.indexOf('base64,');
-                    multipartRequestBody += 'Content-Transfer-Encoding: base64\r\n' + '\r\n' +
-                        data.slice(pos < 0 ? 0 : (pos + 'base64,'.length));
-                } else {
-                    multipartRequestBody +=  + '\r\n' + data;
-                }
-                multipartRequestBody += close_delim;
-
-
-                var request = window.gapi.client.request({
-                    'path': '/upload/drive/v3/files',
-                    'method': 'POST',
-                    'params': {'uploadType': 'multipart'},
-                    'headers': {
-                        'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'
-                    },
-                    'body': multipartRequestBody
-                });
-
-                request.execute(function(file){
-                    if(file.id){
-                        // send id to STM and mark uploaded
-                        alert("request execute: "+JSON.stringify(file));
+                    //Transfer images as base64 string.
+                    if (contentType.indexOf('image/') === 0) {
+                        var pos = data.indexOf('base64,');
+                        multipartRequestBody += 'Content-Transfer-Encoding: base64\r\n' + '\r\n' +
+                            data.slice(pos < 0 ? 0 : (pos + 'base64,'.length));
+                    } else {
+                        multipartRequestBody +=  + '\r\n' + data;
                     }
-                });
+                    multipartRequestBody += close_delim;
 
+
+                    var request = window.gapi.client.request({
+                        'path': '/upload/drive/v3/files',
+                        'method': 'POST',
+                        'params': {'uploadType': 'multipart'},
+                        'headers': {
+                            'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'
+                        },
+                        'body': multipartRequestBody
+                    });
+
+                    request.execute(function(file){
+                        if(file.id){
+                            // send id to STM and mark uploaded
+                            alert("request execute: "+JSON.stringify(file));
+                        }
+                    });
+
+                };
             };
-        };
-        request22.send();
-
-        // var imageLink="https://oauthssdproject.s3.ap-south-1.amazonaws.com/images/1.jpg";
-        //
-        //
-        // fetch(imageLink)
-        //     .then(response => response.blob())
-        //     .then(imageBlob => {
-        //         // Then create a local URL for that image and print it
-        //         const imageObjectURL = URL.createObjectURL(imageBlob);
-        //         console.log(imageObjectURL);
-        //         this.setState({
-        //             body: imageBlob
-        //         }, () => {
-        //             var base64Response = this.getBase64(this.state.body);
-        //             console.log(base64Response);
-        //             var user = this.state.googleAuth.currentUser.get();
-        //
-        //             var isAuthorized = user.hasGrantedScopes(SCOPE);
-        //             if(isAuthorized){
-        //                 console.log('USER')
-        //                 console.log(user)
-        //                 // this.setState({
-        //                 //     name: user.vt.Ad
-        //                 // });
-        //
-        //                 const boundary = '-------314159265358979323846';
-        //                 const delimiter = "\r\n--" + boundary + "\r\n";
-        //                 const close_delim = "\r\n--" + boundary + "--";
-        //                 var fileName='mychat123.jpg';
-        //                 var contentType='image/jpg'
-        //                 var metadata = {
-        //                     'name': fileName,
-        //                     'mimeType': contentType
-        //                 };
-        //
-        //                 var multipartRequestBody =
-        //                     delimiter +  'Content-Type: application/json\r\n\r\n' +
-        //                     JSON.stringify(metadata) +
-        //                     delimiter +
-        //                     'Content-Type: ' + contentType + '\r\n';
-        //                 multipartRequestBody +=  + '\r\n' +  this.state.body;
-        //                 multipartRequestBody += close_delim;
-        //
-        //                 console.log("eee");
-        //                 console.log(this.state.body)
-        //                 console.log("&&&&");
-        //                 console.log(multipartRequestBody);
-        //                 console.log("fff");
-        //                 var request = window.gapi.client.request({
-        //                     'path': 'https://www.googleapis.com/upload/drive/v3/files',
-        //                     'method': 'POST',
-        //                     'params': {'uploadType': 'multipart'},
-        //                     'headers': {
-        //                         'Content-Type': contentType
-        //                     },
-        //                     'body': multipartRequestBody
-        //                 });
-        //
-        //                 request.execute(function(file) {
-        //                     console.log(file)
-        //                 });
-        //             }
-        //         });
-        //
-        //
-        //  });
-
-
+            request22.send();
+        }
 
     }
 
@@ -277,9 +223,17 @@ export default class Browse extends Component {
 
     }
 
+    aaa(){
+        console.log(this.state.googleAuth);
+    }
+
     render() {
         return (
             <div>
+
+                {this.state.isSigned === true && <div>
+                    <p>{this.state.name}</p>
+                </div>}
 
                 <button id="signin-btn">Sign In</button>
                 <button id="signout-btn">Sign Out</button>
@@ -312,8 +266,16 @@ export default class Browse extends Component {
                                                      onClick={() => this.handleChange(image.link)}>Save this image
                                                 </div>
 
+                                                {/*<div type="button" className="btn btn-primary"*/}
+                                                {/*     onClick={this.fileUpload} >Temp button*/}
+                                                {/*</div>*/}
+
                                                 <div type="button" className="btn btn-primary"
-                                                     onClick={this.fileUpload} >Temp button
+                                                     onClick={() => this.fileUpload(image.link)} >Temp Save
+                                                </div>
+
+                                                <div type="button" className="btn btn-primary"
+                                                     onClick={this.aaa} >aaa
                                                 </div>
 
                                             </div>
