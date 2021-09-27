@@ -3,7 +3,8 @@ import {IMAGE_DATA} from '../data/image_data'
 import {VIDEO_DATA} from '../data/video_data'
 import axios from "axios";
 import '../css/browse.css';
-import { Button,Modal} from 'react-bootstrap';
+import {Button, Modal} from 'react-bootstrap';
+
 require("react-bootstrap/ModalHeader");
 
 var SCOPE = 'https://www.googleapis.com/auth/drive.file';
@@ -20,9 +21,10 @@ export default class Browse extends Component {
             isSigned: false,
             isSaveProcessing: false,
             processingIndex: -1,
-            show:false
+            show: false
         };
         this.fileUpload = this.fileUpload.bind(this);
+        this.handleHide = this.handleHide.bind(this);
     }
 
     componentDidMount() {
@@ -31,7 +33,6 @@ export default class Browse extends Component {
         script.src = "https://apis.google.com/js/api.js";
         document.body.appendChild(script);
     }
-
 
 
     initClient = () => {
@@ -80,7 +81,6 @@ export default class Browse extends Component {
     }
 
 
-
     setSigninStatus = async () => {
         var user = this.state.googleAuth.currentUser.get();
 
@@ -103,89 +103,105 @@ export default class Browse extends Component {
         //     isSaveProcessing: true,
         //     processingIndex: index
         // });
-
+        var that = this;
 
         if (this.state.googleAuth.isSignedIn.Xd == false) {
             alert("Please signed in with google")
         } else {
+
             this.setState({
                 isSaveProcessing: true,
                 processingIndex: index
+            }, () => {
+                var request22 = new XMLHttpRequest();
+                request22.open('GET', image_location, true);
+                request22.responseType = 'blob';
+                request22.onload = function () {
+                    var fileData = request22.response;
+
+
+                    const boundary = '-------314159265358979323846';
+                    const delimiter = "\r\n--" + boundary + "\r\n";
+                    const close_delim = "\r\n--" + boundary + "--";
+
+                    var reader = new FileReader();
+                    reader.readAsDataURL(fileData);
+                    reader.onload = function (e) {
+                        var contentType = fileData.type || 'application/octet-stream';
+
+                        var metadata = {
+                            'name': Date.now(),
+                            'mimeType': contentType
+                        };
+                        var data = reader.result;
+
+                        var multipartRequestBody =
+                            delimiter + 'Content-Type: application/json\r\n\r\n' +
+                            JSON.stringify(metadata) +
+                            delimiter +
+                            'Content-Type: ' + contentType + '\r\n';
+
+                        console.log("&&&&&")
+                        console.log(contentType)
+                        console.log(contentType.indexOf('video/'))
+                        console.log("&&&&&")
+
+                        //Transfer images as base64 string.
+                        if (contentType.indexOf('image/') === 0) {
+                            var pos = data.indexOf('base64,');
+                            multipartRequestBody += 'Content-Transfer-Encoding: base64\r\n' + '\r\n' +
+                                data.slice(pos < 0 ? 0 : (pos + 'base64,'.length));
+                        } else if (contentType.indexOf('video/') === 0) {
+                            var pos = data.indexOf('base64,');
+                            multipartRequestBody += 'Content-Transfer-Encoding: base64\r\n' + '\r\n' +
+                                data.slice(pos < 0 ? 0 : (pos + 'base64,'.length));
+                        } else {
+                            multipartRequestBody += +'\r\n' + data;
+                        }
+                        multipartRequestBody += close_delim;
+
+
+                        var request = window.gapi.client.request({
+                            'path': '/upload/drive/v3/files',
+                            'method': 'POST',
+                            'params': {'uploadType': 'multipart'},
+                            'headers': {
+                                'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'
+                            },
+                            'body': multipartRequestBody
+                        });
+
+
+
+
+                        // new Promise(resolve=>{
+                            request.execute(function (file) {
+                                if (file.id) {
+                                    // send id to STM and mark uploaded
+                                    that.setState({isSaveProcessing: false, processingIndex: -1})
+                                    alert("File Successfully Uploaded to your Google Drive");
+                                    // this.handleHide()
+
+                                }
+                            });
+                        // }).then(()=>{
+                        //     this.setState({isSaveProcessing: false, processingIndex: -1})
+                        // })
+
+
+
+
+
+                    };
+                };
+                // new Promise(resolve=>{
+                    request22.send()
+                // }).then(()=>{
+                //     this.setState({isSaveProcessing: false, processingIndex: -1})
+                // })
+
             });
 
-            var request22 = new XMLHttpRequest();
-            request22.open('GET', image_location, true);
-            request22.responseType = 'blob';
-            request22.onload = function () {
-                var fileData = request22.response;
-
-
-                const boundary = '-------314159265358979323846';
-                const delimiter = "\r\n--" + boundary + "\r\n";
-                const close_delim = "\r\n--" + boundary + "--";
-
-                var reader = new FileReader();
-                reader.readAsDataURL(fileData);
-                reader.onload = function (e) {
-                    var contentType = fileData.type || 'application/octet-stream';
-
-                    var metadata = {
-                        'name': Date.now(),
-                        'mimeType': contentType
-                    };
-                    var data = reader.result;
-
-                    var multipartRequestBody =
-                        delimiter + 'Content-Type: application/json\r\n\r\n' +
-                        JSON.stringify(metadata) +
-                        delimiter +
-                        'Content-Type: ' + contentType + '\r\n';
-
-                    console.log("&&&&&")
-                    console.log(contentType)
-                    console.log(contentType.indexOf('video/'))
-                    console.log("&&&&&")
-
-                    //Transfer images as base64 string.
-                    if (contentType.indexOf('image/') === 0) {
-                        var pos = data.indexOf('base64,');
-                        multipartRequestBody += 'Content-Transfer-Encoding: base64\r\n' + '\r\n' +
-                            data.slice(pos < 0 ? 0 : (pos + 'base64,'.length));
-                    }else if (contentType.indexOf('video/') === 0) {
-                        var pos = data.indexOf('base64,');
-                        multipartRequestBody += 'Content-Transfer-Encoding: base64\r\n' + '\r\n' +
-                            data.slice(pos < 0 ? 0 : (pos + 'base64,'.length));
-                    } else {
-                        multipartRequestBody += +'\r\n' + data;
-                    }
-                    multipartRequestBody += close_delim;
-
-
-                    var request = window.gapi.client.request({
-                        'path': '/upload/drive/v3/files',
-                        'method': 'POST',
-                        'params': {'uploadType': 'multipart'},
-                        'headers': {
-                            'Content-Type': 'multipart/mixed; boundary="' + boundary + '"'
-                        },
-                        'body': multipartRequestBody
-                    });
-
-                    request.execute(function (file) {
-                        if (file.id) {
-                            // send id to STM and mark uploaded
-                            // alert("request execute: " + JSON.stringify(file));
-                            alert("Successfully saved to your Google Drive.");
-                        }
-                    });
-
-                };
-            };
-            request22.send();
-            // this.setState({
-            //     isSaveProcessing: false,
-            //     processingIndex: -1
-            // });
 
         }
 
@@ -204,17 +220,17 @@ export default class Browse extends Component {
         window.gapi.load('client:auth2', this.initClient);
     }
 
-    handleHide(){
+    handleHide() {
         this.setState({
-                    isSaveProcessing: false,
-                    processingIndex: -1
-                });
+            isSaveProcessing: false,
+            processingIndex: -1
+        });
     }
 
     render() {
         return (
             <div>
-                <Modal show={this.state.isSaveProcessing} onHide={()=>this.handleHide()}>
+                <Modal show={this.state.isSaveProcessing} onHide={() => this.handleHide()}>
                     <Modal.Header closeButton>This is a Modal Heading</Modal.Header>
                     <Modal.Body>This is a Modal Body</Modal.Body>
                     <Modal.Footer>
@@ -233,8 +249,10 @@ export default class Browse extends Component {
                             {/*    <button id="signin-btn">Allow Access</button>*/}
                             {/*</td> */}
                             <td className="td-space">
-                                <button id="signin-btn">{this.state.isSigned === false && <span> Allow Access </span>}</button>
-                                <button id="signin-btn">{this.state.isSigned === true && <span> Permission Allowed </span>}</button>
+                                <button id="signin-btn">{this.state.isSigned === false &&
+                                <span> Allow Access </span>}</button>
+                                <button id="signin-btn">{this.state.isSigned === true &&
+                                <span> Permission Allowed </span>}</button>
                             </td>
                             <td className="td-space">
                                 <button id="signout-btn">Remove</button>
@@ -272,11 +290,11 @@ export default class Browse extends Component {
                                                 {/*</div>*/}
 
 
-
-
-                                                {this.state.isSaveProcessing === false &&
+                                                {/*{ <span> Permission Allowed </span>}*/}
+                                                {this.state.isSigned === true &&
                                                 <div type="button" className="btn btn-primary"
-                                                     onClick={() => this.fileUpload(image.link, index, "image")}>Save to my
+                                                     onClick={() => this.fileUpload(image.link, index, "image")}>Save to
+                                                    my
                                                     Google Drive
                                                 </div>}
 
@@ -327,7 +345,8 @@ export default class Browse extends Component {
 
                                                 {this.state.isSaveProcessing === false &&
                                                 <div type="button" className="btn btn-primary"
-                                                     onClick={() => this.fileUpload(video.link, index, "video")}>Save to my
+                                                     onClick={() => this.fileUpload(video.link, index, "video")}>Save to
+                                                    my
                                                     Google Drive
                                                 </div>}
 
