@@ -1,15 +1,11 @@
 import React, {Component} from 'react';
 import '../css/login.css';
 import '../css/util.css';
-import fb_button from '../assets/images/buttons/facebook.png'
-import google_btn from '../assets/images/buttons/google.png'
-import linkedin_btn from '../assets/images/buttons/linkedin.png'
 
 import login_bg from '../assets/images/login-bg.jpg'
 import AuthService from "../services/auth.service";
-
+import google_btn from '../assets/images/buttons/google.png'
 import GoogleLogin from 'react-google-login';
-import FacebookLogin from 'react-facebook-login';
 
 export default class Login extends Component {
 
@@ -72,31 +68,20 @@ export default class Login extends Component {
     }
 
     validateInputs() {
-        console.log(1)
         if (this.state.log_username_txt === "" || this.state.log_password_txt === "") {
             alert("Please fill all fields")
-            console.log(2)
             return false
         }
-        console.log(3)
         if (this.state.log_password_txt.length < 6) {
             alert("Password should be longer than 6 characters.")
-            console.log(4)
             return false
         }
         return true
     }
 
-    componentDidMount() {
-
-    }
-
-
-
+    componentDidMount() {}
 
     responseGoogleSuccess(response) {
-        // console.log(response);
-        // console.log(response);
 
         localStorage.setItem("user", JSON.stringify(response));
         localStorage.setItem("type", "google");
@@ -104,16 +89,12 @@ export default class Login extends Component {
 
     }
     responseGoogleFailure(response) {
-        console.log(response.error);
         if (response.error !== 'popup_closed_by_user'){
             alert("Something went wrong")
         }
         window.location.href = "/login";
     }
 
-    responseFacebook (response) {
-        console.log(response);
-    }
 
     render() {
         return (
@@ -172,22 +153,8 @@ export default class Login extends Component {
 						</span>
                                 </div>
                                 <div className="social-btn-container">
-                                    <div>
-                                        {/*<img src={fb_button} className="social-btn-common" alt="Sign with Facebook"/>*/}
-                                        {/*<FacebookLogin*/}
-                                        {/*    appId="217211390428553"*/}
-                                        {/*    // autoLoad={true}*/}
-                                        {/*    fields="name,email,picture"*/}
-                                        {/*    callback={this.responseFacebook}*/}
-                                        {/*    cssClass="my-facebook-button-class"*/}
-                                        {/*    scope="public_profile"*/}
-                                        {/*    icon="fa-facebook"*/}
-                                        {/*/>*/}
 
-
-
-                                    </div>
-                                    <div>
+                                    <div className="google-div-aaa">
                                         {/*TODO:*/}
                                         {/*<img src={google_btn} className="social-btn-common" alt="Sign with Google"/>*/}
                                         <GoogleLogin
@@ -198,9 +165,6 @@ export default class Login extends Component {
                                             cookiePolicy={'single_host_origin'}
                                         />
 
-                                    </div>
-                                    <div>
-                                        <img src={linkedin_btn} className="social-btn-common" alt="Sign with Linkedin"/>
                                     </div>
                                 </div>
 

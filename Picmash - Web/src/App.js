@@ -68,14 +68,26 @@ export default class App extends Component {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/browse">Browse Items</a>
-                                </li>
-                                <li></li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/sell">Sell My Items</a>
-                                </li>
-                                <li></li>
+
+
+                                {this.state.is_loggedIn === true &&
+                                <span>
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="/browse">Browse Items</a>
+                                    </li>
+                                    <li></li>
+                                </span>}
+
+
+                                {this.state.is_loggedIn === true &&
+                                <span>
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="/sell">Sell My Items</a>
+                                    </li>
+                                    <li></li>
+                                </span>}
+
+
                                 <li className="nav-item">
                                     <a className="nav-link" href="/contact">Contact Us</a>
                                 </li>
@@ -106,7 +118,8 @@ export default class App extends Component {
 
 
                             {this.state.is_loggedIn === true && (this.state.logged_in_user_type === 'google') && <div>
-                                <img src={this.state.logged_in_user.profileObj.imageUrl} alt="User" width="50" height="50"/>
+                                <img src={this.state.logged_in_user.profileObj.imageUrl} alt="User" width="50"
+                                     height="50"/>
                             </div>}
 
                             {this.state.is_loggedIn === true && (this.state.logged_in_user_type === 'google') && <div>

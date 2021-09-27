@@ -291,12 +291,12 @@ export default class Sell extends Component {
                                     {this.state.google_selected_file_data !== null && this.state.selected_file_type === 'image' &&
                                     <div>
                                         <img src={this.state.google_drive_img_preview}
-                                             alt="Loading... " width="256" height="144"/>
+                                             alt="Loading... " width="512" height="288"/>
                                     </div>}
 
                                     {this.state.google_selected_file_data !== null && this.state.selected_file_type === 'video' &&
                                     <div>
-                                        <video width="256px" controls="controls" preload="metadata">
+                                        <video width="450px" controls="controls" preload="metadata">
                                             <source src={this.state.google_drive_video_preview + "#t=0.5"}
                                                     type="video/mp4"/>
                                         </video>
@@ -307,7 +307,7 @@ export default class Sell extends Component {
 
 
                             </div>
-
+                            <div style={{height: "20px"}}> </div>
 
                             <div className="row">
                                 {/*<input type="submit" value="Submit"/>*/}

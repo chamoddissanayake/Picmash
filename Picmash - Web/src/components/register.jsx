@@ -7,6 +7,7 @@ import linkedin_btn from '../assets/images/buttons/linkedin.png'
 import register_bg from '../assets/images/register-bg.jpg'
 import AuthService from "../services/auth.service";
 import {  Redirect, Link } from 'react-router-dom';
+import GoogleLogin from "react-google-login";
 
 export default class Register extends Component {
 
@@ -30,17 +31,14 @@ export default class Register extends Component {
     }
 
     handleChangeRegUsername(event) {
-        console.log(event.target.value)
         this.setState({reg_username_txt: event.target.value});
     }
 
     handleChangeRegEmail(event) {
-        console.log(event.target.value)
         this.setState({reg_email_txt: event.target.value});
     }
 
     handleChangeRegPassword(event) {
-        console.log(event.target.value)
         this.setState({reg_password_txt: event.target.value});
     }
 
@@ -172,28 +170,22 @@ export default class Register extends Component {
                                 </div>
                                 <div className="social-btn-container">
                                     <div>
-                                        <img src={fb_button} className="social-btn-common" alt="Sign with Facebook"/>
-                                    </div>
-                                    <div>
-                                        <img src={google_btn} className="social-btn-common" alt="Sign with Google"/>
-                                    </div>
-                                    <div>
-                                        <img src={linkedin_btn} className="social-btn-common" alt="Sign with Linkedin"/>
+                                        {/*TODO:*/}
+                                        {/*<img src={google_btn} className="social-btn-common" alt="Sign with Google"/>*/}
+                                        <GoogleLogin
+                                            clientId="801360513499-u7sc20pvp4nkkigtgvnnaajp4hcq4ate.apps.googleusercontent.com"
+                                            buttonText="Login"
+                                            onSuccess={this.responseGoogleSuccess}
+                                            onFailure={this.responseGoogleFailure}
+                                            cookiePolicy={'single_host_origin'}
+                                        />
+
                                     </div>
                                 </div>
 
                             </div>
 
                             <img className="login100-more" src={register_bg} alt="Login Image"/>
-
-                            {/*<div className="login100-more" style={{*/}
-                            {/*    backgroundImage: `url("https://images.pexels.com/photos/2769188/pexels-photo-2769188.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260")`*/}
-                            {/*}}>*/}
-
-
-                            {/*    /!*<img src={require('/images/image-name.png')} />*!/*/}
-
-                            {/*</div>*/}
 
                         </div>
                     </div>

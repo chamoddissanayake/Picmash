@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {IMAGE_DATA} from '../data/image_data'
 import {VIDEO_DATA} from '../data/video_data'
 import axios from "axios";
+import '../css/browse.css';
 
 var SCOPE = 'https://www.googleapis.com/auth/drive.file';
 var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
@@ -14,22 +15,23 @@ export default class Browse extends Component {
             name: '',
             googleAuth: '',
             body: '',
-            isSigned:false
+            isSigned: false,
+            isSaveProcessing: false,
+            processingIndex: -1
         };
         this.fileUpload = this.fileUpload.bind(this);
-        this.aaa = this.aaa.bind(this);
     }
 
     componentDidMount() {
         var script = document.createElement('script');
-        script.onload=this.handleClientLoad;
-        script.src="https://apis.google.com/js/api.js";
+        script.onload = this.handleClientLoad;
+        script.src = "https://apis.google.com/js/api.js";
         document.body.appendChild(script);
     }
 
 
     initClient = () => {
-        try{
+        try {
             window.gapi.client.init({
                 'apiKey': "AIzaSyBJG2E08YMitCRBQSzyuJX6I57MOhfXrRs",
                 'clientId': "801360513499-u7sc20pvp4nkkigtgvnnaajp4hcq4ate.apps.googleusercontent.com",
@@ -44,68 +46,59 @@ export default class Browse extends Component {
                 document.getElementById('signout-btn').addEventListener('click', this.signOutFunction);
 
             });
-        }catch(e){
+        } catch (e) {
             console.log(e);
         }
     }
 
-    signInFunction =()=>{
-        // console.log(this.state.googleAuth)
-        this.state.googleAuth.signIn().then(a=>{
+    signInFunction = () => {
+        this.state.googleAuth.signIn().then(a => {
             console.log("successfully signed in")
             this.setSigninStatus();
         });
-        // console.log(this.state.googleAuth)
-        // this.updateSigninStatus()
 
     }
 
-    signOutFunction =()=>{
-        // this.state.googleAuth.signOut();
-        // this.setSigninStatus();
-
-        this.state.googleAuth.signOut().then(a=>{
+    signOutFunction = () => {
+        this.state.googleAuth.signOut().then(a => {
             console.log("successfully signed out")
             this.setSigninStatus();
         });
 
-        // this.updateSigninStatus()
     }
 
-    // updateSigninStatus = ()=> {
-    //      this.setSigninStatus();
-    // }
 
 
-    setSigninStatus= async ()=>{
-        // console.log(this.state.googleAuth.currentUser.get())
+    setSigninStatus = async () => {
         var user = this.state.googleAuth.currentUser.get();
 
-        // if (user.dt.uU == null || user.dt.uU==''){
-        if (user.$b == null){
-            console.log("111")
+        if (user.$b == null) {
             this.setState({
                 name: '',
-                isSigned:false
+                isSigned: false
             });
-        }else{
-            console.log("222")
+        } else {
             this.setState({
                 name: 'testuser',
-                isSigned:true
+                isSigned: true
             });
         }
     }
 
-    fileUpload(image_location){
+    fileUpload(image_location, index) {
 
-        if (this.state.googleAuth.isSignedIn.Xd == false){
-            alert("Please signed in")
-        }else{
+        if (this.state.googleAuth.isSignedIn.Xd == false) {
+            alert("Please signed in with google")
+        } else {
+            this.setState({
+                isSaveProcessing: true,
+                processingIndex: index
+            });
+
             var request22 = new XMLHttpRequest();
             request22.open('GET', image_location, true);
             request22.responseType = 'blob';
-            request22.onload = function() {
+            request22.onload = function () {
                 var fileData = request22.response;
 
 
@@ -115,7 +108,7 @@ export default class Browse extends Component {
 
                 var reader = new FileReader();
                 reader.readAsDataURL(fileData);
-                reader.onload =  function(e){
+                reader.onload = function (e) {
                     var contentType = fileData.type || 'application/octet-stream';
 
                     var metadata = {
@@ -125,7 +118,7 @@ export default class Browse extends Component {
                     var data = reader.result;
 
                     var multipartRequestBody =
-                        delimiter +  'Content-Type: application/json\r\n\r\n' +
+                        delimiter + 'Content-Type: application/json\r\n\r\n' +
                         JSON.stringify(metadata) +
                         delimiter +
                         'Content-Type: ' + contentType + '\r\n';
@@ -136,7 +129,7 @@ export default class Browse extends Component {
                         multipartRequestBody += 'Content-Transfer-Encoding: base64\r\n' + '\r\n' +
                             data.slice(pos < 0 ? 0 : (pos + 'base64,'.length));
                     } else {
-                        multipartRequestBody +=  + '\r\n' + data;
+                        multipartRequestBody += +'\r\n' + data;
                     }
                     multipartRequestBody += close_delim;
 
@@ -151,16 +144,22 @@ export default class Browse extends Component {
                         'body': multipartRequestBody
                     });
 
-                    request.execute(function(file){
-                        if(file.id){
+                    request.execute(function (file) {
+                        if (file.id) {
                             // send id to STM and mark uploaded
-                            alert("request execute: "+JSON.stringify(file));
+                            // alert("request execute: " + JSON.stringify(file));
+                            alert("Successfully saved to your Google Drive.");
                         }
                     });
 
                 };
             };
             request22.send();
+            this.setState({
+                isSaveProcessing: false,
+                processingIndex: -1
+            });
+
         }
 
     }
@@ -177,19 +176,9 @@ export default class Browse extends Component {
 
     handleChange = async file => {
         let image
-        console.log("111")
-        console.log(file)
-        console.log("***")
         if (file.currentTarget) {
-            console.log("222")
             image = file.currentTarget.currentSrc;
-            console.log(file.currentTarget)
         } else {
-
-
-
-
-
             if (!file.file.url && !file.file.preview) {
                 file.file.preview = await this.getBase64(file.file.originFileObj);
             }
@@ -199,45 +188,46 @@ export default class Browse extends Component {
             });
 
 
-
         }
-
-        console.log(image)
-
     }
 
 
-    handleClientLoad = ()=>{
+    handleClientLoad = () => {
         window.gapi.load('client:auth2', this.initClient);
     }
 
-    saveImageInDriveClicked(imagelink){
-        console.log(imagelink)
+    saveImageInDriveClicked(imagelink) {
         var status = axios
             .post("http://localhost:8001/api/save/image", {})
             .then(response => {
-                console.log(response)
                 return response;
             });
-        //
 
-    }
-
-    aaa(){
-        console.log(this.state.googleAuth);
     }
 
     render() {
         return (
             <div>
 
-                {this.state.isSigned === true && <div>
-                    <p>{this.state.name}</p>
-                </div>}
-
-                <button id="signin-btn">Sign In</button>
-                <button id="signout-btn">Sign Out</button>
-`
+                <div className="center-req">
+                    <table>
+                        <tr>
+                            <td className="td-space" id="td-title">
+                                <p>We need Write permission to your google Drive:</p>
+                            </td>
+                            {/*<td className="td-space">*/}
+                            {/*    <button id="signin-btn">Allow Access</button>*/}
+                            {/*</td> */}
+                            <td className="td-space">
+                                <button id="signin-btn">{this.state.isSigned === false && <span> Allow Access </span>}</button>
+                                <button id="signin-btn">{this.state.isSigned === true && <span> Permission Allowed </span>}</button>
+                            </td>
+                            <td className="td-space">
+                                <button id="signout-btn">Remove</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
                 {/*Photo Section start*/}
                 <div id="cards_landscape_wrap-2">
@@ -262,21 +252,22 @@ export default class Browse extends Component {
                                             <div className="card-bottom-div">
                                                 <p className="price-font"
                                                    style={{"fontSize": "20px"}}>$ {image.price}</p>
-                                                <div type="button" className="btn btn-primary"
-                                                     onClick={() => this.handleChange(image.link)}>Save this image
-                                                </div>
-
                                                 {/*<div type="button" className="btn btn-primary"*/}
-                                                {/*     onClick={this.fileUpload} >Temp button*/}
+                                                {/*     onClick={() => this.handleChange(image.link)}>Save this image*/}
                                                 {/*</div>*/}
 
-                                                <div type="button" className="btn btn-primary"
-                                                     onClick={() => this.fileUpload(image.link)} >Temp Save
-                                                </div>
 
+                                                {this.state.isSaveProcessing === false &&
                                                 <div type="button" className="btn btn-primary"
-                                                     onClick={this.aaa} >aaa
-                                                </div>
+                                                     onClick={() => this.fileUpload(image.link, index)}>Save to my
+                                                    Google Drive
+                                                </div>}
+
+                                                {this.state.isSaveProcessing === true && this.state.processingIndex === index &&
+                                                <div type="button" className="btn btn-primary"
+                                                     style={{opacity: "0.2"}}>Saving. Please wait...
+                                                </div>}
+
 
                                             </div>
                                         </div>
