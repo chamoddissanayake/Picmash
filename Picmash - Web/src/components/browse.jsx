@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {IMAGE_DATA} from '../data/image_data'
 import {VIDEO_DATA} from '../data/video_data'
-import axios from "axios";
 import '../css/browse.css';
-import {Button, Modal} from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
+import GDrive from './../assets/images/drive.gif';
 
 require("react-bootstrap/ModalHeader");
 
@@ -36,13 +36,6 @@ export default class Browse extends Component {
 
 
     initClient = () => {
-        // setTimeout(() => {
-        //     this.setState({show:true})
-        // }, 3000);
-        //
-        // setTimeout(() => {
-        //     this.setState({show:false})
-        // }, 6000);
 
         try {
             window.gapi.client.init({
@@ -99,10 +92,6 @@ export default class Browse extends Component {
 
     fileUpload(image_location, index, selectedType) {
 
-        // this.setState({
-        //     isSaveProcessing: true,
-        //     processingIndex: index
-        // });
         var that = this;
 
         if (this.state.googleAuth.isSignedIn.Xd == false) {
@@ -171,9 +160,6 @@ export default class Browse extends Component {
                             'body': multipartRequestBody
                         });
 
-
-
-
                         // new Promise(resolve=>{
                             request.execute(function (file) {
                                 if (file.id) {
@@ -184,25 +170,11 @@ export default class Browse extends Component {
 
                                 }
                             });
-                        // }).then(()=>{
-                        //     this.setState({isSaveProcessing: false, processingIndex: -1})
-                        // })
-
-
-
-
 
                     };
                 };
-                // new Promise(resolve=>{
                     request22.send()
-                // }).then(()=>{
-                //     this.setState({isSaveProcessing: false, processingIndex: -1})
-                // })
-
             });
-
-
         }
 
     }
@@ -231,10 +203,14 @@ export default class Browse extends Component {
         return (
             <div>
                 <Modal show={this.state.isSaveProcessing} onHide={() => this.handleHide()}>
-                    <Modal.Header closeButton>This is a Modal Heading</Modal.Header>
-                    <Modal.Body>This is a Modal Body</Modal.Body>
+                    <Modal.Header closeButton>Saving your file in Google Drive</Modal.Header>
+                    <Modal.Body>
+                        <div className="center-model-content">
+                            <img src={GDrive} alt="Uploading to Google Drive" />
+                        </div>
+                    </Modal.Body>
                     <Modal.Footer>
-                        <p>This is footer</p>
+                        <p>Please wait...</p>
                     </Modal.Footer>
                 </Modal>
 
@@ -245,9 +221,6 @@ export default class Browse extends Component {
                             <td className="td-space" id="td-title">
                                 <p>We need Write permission to your google Drive:</p>
                             </td>
-                            {/*<td className="td-space">*/}
-                            {/*    <button id="signin-btn">Allow Access</button>*/}
-                            {/*</td> */}
                             <td className="td-space">
                                 <button id="signin-btn">{this.state.isSigned === false &&
                                 <span> Allow Access </span>}</button>
@@ -285,24 +258,12 @@ export default class Browse extends Component {
                                             <div className="card-bottom-div">
                                                 <p className="price-font"
                                                    style={{"fontSize": "20px"}}>$ {image.price}</p>
-                                                {/*<div type="button" className="btn btn-primary"*/}
-                                                {/*     onClick={() => this.handleChange(image.link)}>Save this image*/}
-                                                {/*</div>*/}
-
-
-                                                {/*{ <span> Permission Allowed </span>}*/}
                                                 {this.state.isSigned === true &&
                                                 <div type="button" className="btn btn-primary"
                                                      onClick={() => this.fileUpload(image.link, index, "image")}>Save to
                                                     my
                                                     Google Drive
                                                 </div>}
-
-                                                {/*{this.state.isSaveProcessing === true && this.state.processingIndex === index &&*/}
-                                                {/*<div type="button" className="btn btn-primary"*/}
-                                                {/*     style={{opacity: "0.2"}}>Saving. Please wait...*/}
-                                                {/*</div>}*/}
-
 
                                             </div>
                                         </div>
@@ -327,8 +288,8 @@ export default class Browse extends Component {
                                     <div className="card-flyer">
                                         <div className="text-box">
                                             <div className="image-box">
-                                                <div style={{height: "150px"}}>
-                                                    <video height={"150px"} controls="controls" preload="metadata">
+                                                <div style={{height: "170px"}}>
+                                                    <video height={"174px"} controls="controls" preload="metadata">
                                                         <source src={video.link + "#t=0.5"} type="video/mp4"/>
                                                     </video>
                                                 </div>
@@ -343,7 +304,7 @@ export default class Browse extends Component {
                                                 {/*<button type="button" className="btn btn-primary">Save this video*/}
                                                 {/*</button>*/}
 
-                                                {this.state.isSaveProcessing === false &&
+                                                {this.state.isSigned === true &&
                                                 <div type="button" className="btn btn-primary"
                                                      onClick={() => this.fileUpload(video.link, index, "video")}>Save to
                                                     my
