@@ -3,6 +3,8 @@ import {IMAGE_DATA} from '../data/image_data'
 import {VIDEO_DATA} from '../data/video_data'
 import axios from "axios";
 import '../css/browse.css';
+import { Button,Modal} from 'react-bootstrap';
+require("react-bootstrap/ModalHeader");
 
 var SCOPE = 'https://www.googleapis.com/auth/drive.file';
 var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
@@ -17,7 +19,8 @@ export default class Browse extends Component {
             body: '',
             isSigned: false,
             isSaveProcessing: false,
-            processingIndex: -1
+            processingIndex: -1,
+            show:false
         };
         this.fileUpload = this.fileUpload.bind(this);
     }
@@ -30,7 +33,16 @@ export default class Browse extends Component {
     }
 
 
+
     initClient = () => {
+        // setTimeout(() => {
+        //     this.setState({show:true})
+        // }, 3000);
+        //
+        // setTimeout(() => {
+        //     this.setState({show:false})
+        // }, 6000);
+
         try {
             window.gapi.client.init({
                 'apiKey': "AIzaSyBJG2E08YMitCRBQSzyuJX6I57MOhfXrRs",
@@ -85,7 +97,13 @@ export default class Browse extends Component {
         }
     }
 
-    fileUpload(image_location, index) {
+    fileUpload(image_location, index, selectedType) {
+
+        // this.setState({
+        //     isSaveProcessing: true,
+        //     processingIndex: index
+        // });
+
 
         if (this.state.googleAuth.isSignedIn.Xd == false) {
             alert("Please signed in with google")
@@ -123,8 +141,17 @@ export default class Browse extends Component {
                         delimiter +
                         'Content-Type: ' + contentType + '\r\n';
 
+                    console.log("&&&&&")
+                    console.log(contentType)
+                    console.log(contentType.indexOf('video/'))
+                    console.log("&&&&&")
+
                     //Transfer images as base64 string.
                     if (contentType.indexOf('image/') === 0) {
+                        var pos = data.indexOf('base64,');
+                        multipartRequestBody += 'Content-Transfer-Encoding: base64\r\n' + '\r\n' +
+                            data.slice(pos < 0 ? 0 : (pos + 'base64,'.length));
+                    }else if (contentType.indexOf('video/') === 0) {
                         var pos = data.indexOf('base64,');
                         multipartRequestBody += 'Content-Transfer-Encoding: base64\r\n' + '\r\n' +
                             data.slice(pos < 0 ? 0 : (pos + 'base64,'.length));
@@ -155,10 +182,10 @@ export default class Browse extends Component {
                 };
             };
             request22.send();
-            this.setState({
-                isSaveProcessing: false,
-                processingIndex: -1
-            });
+            // this.setState({
+            //     isSaveProcessing: false,
+            //     processingIndex: -1
+            // });
 
         }
 
@@ -173,44 +200,31 @@ export default class Browse extends Component {
         });
     }
 
-
-    handleChange = async file => {
-        let image
-        if (file.currentTarget) {
-            image = file.currentTarget.currentSrc;
-        } else {
-            if (!file.file.url && !file.file.preview) {
-                file.file.preview = await this.getBase64(file.file.originFileObj);
-            }
-            image = file.file.preview;
-            this.setState({
-                body: file.file.preview
-            });
-
-
-        }
-    }
-
-
     handleClientLoad = () => {
         window.gapi.load('client:auth2', this.initClient);
     }
 
-    saveImageInDriveClicked(imagelink) {
-        var status = axios
-            .post("http://localhost:8001/api/save/image", {})
-            .then(response => {
-                return response;
-            });
-
+    handleHide(){
+        this.setState({
+                    isSaveProcessing: false,
+                    processingIndex: -1
+                });
     }
 
     render() {
         return (
             <div>
+                <Modal show={this.state.isSaveProcessing} onHide={()=>this.handleHide()}>
+                    <Modal.Header closeButton>This is a Modal Heading</Modal.Header>
+                    <Modal.Body>This is a Modal Body</Modal.Body>
+                    <Modal.Footer>
+                        <p>This is footer</p>
+                    </Modal.Footer>
+                </Modal>
 
                 <div className="center-req">
                     <table>
+                        <tbody>
                         <tr>
                             <td className="td-space" id="td-title">
                                 <p>We need Write permission to your google Drive:</p>
@@ -226,6 +240,7 @@ export default class Browse extends Component {
                                 <button id="signout-btn">Remove</button>
                             </td>
                         </tr>
+                        </tbody>
                     </table>
                 </div>
 
@@ -257,16 +272,18 @@ export default class Browse extends Component {
                                                 {/*</div>*/}
 
 
+
+
                                                 {this.state.isSaveProcessing === false &&
                                                 <div type="button" className="btn btn-primary"
-                                                     onClick={() => this.fileUpload(image.link, index)}>Save to my
+                                                     onClick={() => this.fileUpload(image.link, index, "image")}>Save to my
                                                     Google Drive
                                                 </div>}
 
-                                                {this.state.isSaveProcessing === true && this.state.processingIndex === index &&
-                                                <div type="button" className="btn btn-primary"
-                                                     style={{opacity: "0.2"}}>Saving. Please wait...
-                                                </div>}
+                                                {/*{this.state.isSaveProcessing === true && this.state.processingIndex === index &&*/}
+                                                {/*<div type="button" className="btn btn-primary"*/}
+                                                {/*     style={{opacity: "0.2"}}>Saving. Please wait...*/}
+                                                {/*</div>}*/}
 
 
                                             </div>
@@ -305,8 +322,15 @@ export default class Browse extends Component {
                                             <div className="card-bottom-div">
                                                 <p className="price-font"
                                                    style={{"fontSize": "20px"}}>$ {video.price}</p>
-                                                <button type="button" className="btn btn-primary">Save this video
-                                                </button>
+                                                {/*<button type="button" className="btn btn-primary">Save this video*/}
+                                                {/*</button>*/}
+
+                                                {this.state.isSaveProcessing === false &&
+                                                <div type="button" className="btn btn-primary"
+                                                     onClick={() => this.fileUpload(video.link, index, "video")}>Save to my
+                                                    Google Drive
+                                                </div>}
+
                                             </div>
                                         </div>
                                     </div>
