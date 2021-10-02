@@ -4,7 +4,7 @@ import {VIDEO_DATA} from '../data/video_data'
 import '../css/browse.css';
 import {Modal} from 'react-bootstrap';
 import GDrive from './../assets/images/drive.gif';
-import * as constants from '../constants';
+import * as accessConstants from '../accessConstants';
 
 require("react-bootstrap/ModalHeader");
 
@@ -40,10 +40,8 @@ export default class Browse extends Component {
 
         try {
             window.gapi.client.init({
-                // 'apiKey': "AIzaSyBJG2E08YMitCRBQSzyuJX6I57MOhfXrRs",
-                'apiKey': constants.API_KEY,
-                // 'clientId': "801360513499-u7sc20pvp4nkkigtgvnnaajp4hcq4ate.apps.googleusercontent.com",
-                'clientId': constants.CLIENT_ID,
+                'apiKey': accessConstants.API_KEY,
+                'clientId': accessConstants.CLIENT_ID,
                 'scope': SCOPE,
                 'discoveryDocs': [discoveryUrl]
             }).then(() => {

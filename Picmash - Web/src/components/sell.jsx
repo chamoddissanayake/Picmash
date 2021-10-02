@@ -3,8 +3,9 @@ import '../css/sell.css';
 import '../css/util.css';
 import sell_bg from '../assets/images/sell-bg.jpg'
 
-import * as constants from '../constants';
+import * as accessConstants from '../accessConstants';
 import AuthService from "../services/auth.service";
+
 
 import GooglePicker from 'react-google-picker';
 import axios from "axios";
@@ -36,31 +37,13 @@ export default class Sell extends Component {
     }
 
     fillGoogleDriveVideoPreviewer() {
-        console.log("%%%")
-        console.log(this.state.google_selected_file_data)
         // google_drive_video_preview
         this.setState({google_drive_video_preview: 'https://drive.google.com/uc?export=view&id=' + this.state.google_selected_file_data.id});
     }
 
     submitPressed() {
-        console.log("-----")
 
         const currentUser = AuthService.getCurrentUser();
-
-        console.log(this.state.google_drive_img_preview);
-        console.log(this.state.google_selected_file_data);
-        console.log(currentUser);
-
-        // const submitted = SellService.sellSubmit(
-        //     this.state.selected_file_type,
-        //     this.state.google_selected_file_data,
-        //     this.state.google_drive_img_preview,
-        //     this.state.google_drive_video_preview
-        //     );
-        // console.log("*****")
-        // this.fetchImageContent();
-        // console.log("-----")
-        // this.downloadImageFile()
         this.sendNetworkCall();
     }
 
@@ -68,15 +51,6 @@ export default class Sell extends Component {
         var response  = axios
             .post("http://localhost:8001/api/sell/image", {})
             .then(response => {
-                // if (response.data.accessToken) {
-                //     localStorage.setItem("user", JSON.stringify(response.data));
-                //     localStorage.setItem("type", "general");
-
-                // }
-                console.log("********************")
-                console.log("response received")
-                console.log(response)
-                console.log("********************")
 
                 return response.data;
             });
@@ -84,7 +58,6 @@ export default class Sell extends Component {
 
     fetchImageContent(){
 
-        // fetch("https://i.picsum.photos/id/794/1280/720.jpg?hmac=MWQL7lPs6VIfRYN9wYYq-dvXitPBPo-ZKzM_xfeR_sM",
         fetch(this.state.google_drive_img_preview,
             {
                 method: "POST",
@@ -95,39 +68,6 @@ export default class Sell extends Component {
         })
     }
 
-    // downloadImageFile() {
-    //     fetch('https://i.picsum.photos/id/723/1280/720.jpg?hmac=Mp0rVArPWiOWfMJyumAZEILRVbrloHZd0W1Sib1LXx8',
-    //         {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Content-Type': 'image/jpeg',
-    //             },
-    //         })
-    //         .then((response) => response.blob())
-    //         .then((blob) => {
-    //             // Create blob link to download
-    //             const url = window.URL.createObjectURL(
-    //                 new Blob([blob]),
-    //             );
-    //             console.log(url)
-    //             const link = document.createElement('a');
-    //             link.href = url;
-    //             link.setAttribute(
-    //                 'download',
-    //                 `FileName.jpg`,
-    //             );
-    //
-    //             console.log(link)
-    //             // Append to html link element page
-    //             document.body.appendChild(link);
-    //
-    //             // Start download
-    //             link.click();
-    //
-    //             // Clean up and remove the link
-    //             link.parentNode.removeChild(link);
-    //         });
-    // }
 
     render() {
         return (
@@ -196,34 +136,25 @@ export default class Sell extends Component {
 
                                 <div className="col-75">
                                     <div className="selected-choose-type-container">
-                                        {/*<input onClick={this.chooseGoogleFileBtnPressed} type="button" value="Choose image from Google Drive"/>*/}
-                                        {/*<button onClick={this.handleOpenPicker}>Open Picker</button>*/}
-
-                                        {/*TODO:*/}
                                         <GooglePicker
-                                            // clientId={'801360513499-u7sc20pvp4nkkigtgvnnaajp4hcq4ate.apps.googleusercontent.com'}
-                                            clientId={constants.CLIENT_ID}
-                                            // developerKey={'AIzaSyBJG2E08YMitCRBQSzyuJX6I57MOhfXrRs'}
-                                            developerKey={constants.API_KEY}
+                                            clientId={accessConstants.CLIENT_ID}
+                                            developerKey={accessConstants.API_KEY}
                                             scope={['https://www.googleapis.com/auth/drive.readonly']}
                                             onChange={data => console.log('on change:', data)}
                                             onAuthFailed={data => console.log('on auth failed:', data)}
                                             multiselect={true}
                                             navHidden={true}
                                             authImmediate={false}
-                                            // mimeTypes={['image/png', 'image/jpeg', 'image/jpg']}
                                             query={'a query string like .txt or fileName'}
                                             viewId={'DOCS'} onChange={data => console.log('on change:', data)}
                                             onAuthFailed={data => console.log('on auth failed:', data)}
                                             multiselect={true}
                                             navHidden={true}
                                             authImmediate={false}
-                                            // viewId={'FOLDERS'}
                                             createPicker={(google, oauthToken) => {
                                                 const googleViewId = google.picker.ViewId.FOLDERS;
                                                 const docsView = new google.picker.DocsView(googleViewId)
                                                     .setIncludeFolders(true)
-                                                    // .setMimeTypes('application/vnd.google-apps.folder')
                                                     .setMimeTypes('application/vnd.google-apps.file')
                                                     .setSelectFolderEnabled(true);
 
@@ -253,12 +184,8 @@ export default class Sell extends Component {
                                                             } else {
                                                                 alert('Invalid file selected. Please select a photo or video')
                                                             }
-
-
                                                         }
-
                                                     });
-
                                                 picker.build().setVisible(true);
                                             }}
                                         >
@@ -307,7 +234,6 @@ export default class Sell extends Component {
                             <div style={{height: "20px"}}> </div>
 
                             <div className="row">
-                                {/*<input type="submit" value="Submit"/>*/}
                                 <button type="button" className="btn btn-success" onClick={this.submitPressed}>Submit
                                 </button>
                             </div>
