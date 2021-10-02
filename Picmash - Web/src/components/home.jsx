@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import '../css/landing.css';
-import HomeItems from "./home-items";
 
 export default class Home extends Component {
 
@@ -50,9 +49,6 @@ export default class Home extends Component {
                             </div>
                         </div>
                     </form>
-                </div>
-                <div>
-                    <HomeItems/>
                 </div>
             </div>
         )

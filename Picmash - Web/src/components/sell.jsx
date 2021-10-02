@@ -3,12 +3,8 @@ import '../css/sell.css';
 import '../css/util.css';
 import sell_bg from '../assets/images/sell-bg.jpg'
 
-
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import * as constants from '../constants';
 import AuthService from "../services/auth.service";
-import SellService from "../services/sell.service";
 
 import GooglePicker from 'react-google-picker';
 import axios from "axios";
@@ -205,8 +201,10 @@ export default class Sell extends Component {
 
                                         {/*TODO:*/}
                                         <GooglePicker
-                                            clientId={'801360513499-u7sc20pvp4nkkigtgvnnaajp4hcq4ate.apps.googleusercontent.com'}
-                                            developerKey={'AIzaSyBJG2E08YMitCRBQSzyuJX6I57MOhfXrRs'}
+                                            // clientId={'801360513499-u7sc20pvp4nkkigtgvnnaajp4hcq4ate.apps.googleusercontent.com'}
+                                            clientId={constants.CLIENT_ID}
+                                            // developerKey={'AIzaSyBJG2E08YMitCRBQSzyuJX6I57MOhfXrRs'}
+                                            developerKey={constants.API_KEY}
                                             scope={['https://www.googleapis.com/auth/drive.readonly']}
                                             onChange={data => console.log('on change:', data)}
                                             onAuthFailed={data => console.log('on auth failed:', data)}
@@ -232,7 +230,6 @@ export default class Sell extends Component {
                                                 const picker = new window.google.picker.PickerBuilder()
                                                     .addView(docsView)
                                                     .setOAuthToken(oauthToken)
-                                                    // .setDeveloperKey('AIzaSyBJG2E08YMitCRBQSzyuJX6I57MOhfXrRs')
                                                     .setCallback((data) => {
 
 
