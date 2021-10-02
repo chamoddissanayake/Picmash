@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../css/landing.css';
+import HomeItems from "./home-items";
 
 export default class Home extends Component {
 
