@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import '../css/login.css';
 import '../css/util.css';
 
+import * as accessConstants from '../accessConstants';
+
 import login_bg from '../assets/images/login-bg.jpg'
 import AuthService from "../services/auth.service";
 import google_btn from '../assets/images/buttons/google.png'
@@ -158,7 +160,7 @@ export default class Login extends Component {
                                         {/*TODO:*/}
                                         {/*<img src={google_btn} className="social-btn-common" alt="Sign with Google"/>*/}
                                         <GoogleLogin
-                                            clientId="801360513499-u7sc20pvp4nkkigtgvnnaajp4hcq4ate.apps.googleusercontent.com"
+                                            clientId= {accessConstants.CLIENT_ID}
                                             buttonText="Login"
                                             onSuccess={this.responseGoogleSuccess}
                                             onFailure={this.responseGoogleFailure}

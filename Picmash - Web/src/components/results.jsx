@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import '../css/results.css';
 
 export default class Results extends Component {

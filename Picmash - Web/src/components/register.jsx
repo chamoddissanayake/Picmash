@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import '../css/login.css';
 import '../css/util.css';
-import fb_button from '../assets/images/buttons/facebook.png'
-import google_btn from '../assets/images/buttons/google.png'
-import linkedin_btn from '../assets/images/buttons/linkedin.png'
 import register_bg from '../assets/images/register-bg.jpg'
 import AuthService from "../services/auth.service";
-import {  Redirect, Link } from 'react-router-dom';
 import GoogleLogin from "react-google-login";
+
+import * as accessConstants from '../accessConstants';
 
 export default class Register extends Component {
 
@@ -173,7 +171,7 @@ export default class Register extends Component {
                                         {/*TODO:*/}
                                         {/*<img src={google_btn} className="social-btn-common" alt="Sign with Google"/>*/}
                                         <GoogleLogin
-                                            clientId="801360513499-u7sc20pvp4nkkigtgvnnaajp4hcq4ate.apps.googleusercontent.com"
+                                            clientId={accessConstants.CLIENT_ID}
                                             buttonText="Login"
                                             onSuccess={this.responseGoogleSuccess}
                                             onFailure={this.responseGoogleFailure}
