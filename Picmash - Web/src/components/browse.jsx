@@ -131,10 +131,8 @@ export default class Browse extends Component {
                             delimiter +
                             'Content-Type: ' + contentType + '\r\n';
 
-                        console.log("&&&&&")
                         console.log(contentType)
                         console.log(contentType.indexOf('video/'))
-                        console.log("&&&&&")
 
                         //Transfer images as base64 string.
                         if (contentType.indexOf('image/') === 0) {

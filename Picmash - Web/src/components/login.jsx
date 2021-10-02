@@ -32,13 +32,9 @@ export default class Login extends Component {
     }
 
     handleLoginFormSubmit() {
-        console.log(this.state.log_username_txt)
-        console.log(this.state.log_password_txt)
         if (!this.validateInputs()) {
-            console.log(5)
             return
         }
-        console.log("%%%%")
         this.loginUser();
     }
 
